@@ -5,13 +5,14 @@ import { StatusBar } from "expo-status-bar";
 import Main from "./assets/src/pages/main";
 import SignUp from "./assets/src/pages/signup";
 import Login from "./assets/src/pages/login";
+import Start from "./assets/src/pages/start";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Main">
+      <Stack.Navigator initialRouteName="Start">
         <Stack.Screen
           name="Main"
           component={Main}
@@ -25,6 +26,11 @@ export default function App() {
         <Stack.Screen
           name="Signup"
           component={SignUp}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Start"
+          component={Start}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
