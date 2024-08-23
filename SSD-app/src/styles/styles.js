@@ -4,7 +4,7 @@ export default styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "start",
   },
   icon: {
     width: 24,
@@ -19,5 +19,10 @@ export default styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
+  },
+  title: {
+    fontWeight: "700",
+    fontSize: 32,
+    marginRight: 260,
   },
 });
