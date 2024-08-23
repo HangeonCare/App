@@ -11,7 +11,7 @@ export default styles = StyleSheet.create({
     height: 24,
   },
   postContainer: {
-    gap: 140,
+    gap: 160,
     flex: 0.3,
     flexDirection: "row",
     alignItems: "center",
@@ -37,5 +37,16 @@ export default styles = StyleSheet.create({
   logo: {
     width: 70,
     height: 28,
+  },
+  user: {
+    fontWeight: "700",
+    fontSize: 24,
+    marginBottom: 5,
+  },
+  time: {
+    color: "#000000",
+    opacity: 0.5,
+    fontSize: 12,
+    fontWeight: "700",
   },
 });
