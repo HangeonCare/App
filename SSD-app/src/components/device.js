@@ -13,11 +13,11 @@ export default function Device() {
         />
         <View
           style={{
-            marginLeft: -100,
+            marginLeft: -140,
           }}
         >
-          <Text>정연이</Text>
-          <Text>현재 작동중</Text>
+          <Text style={styles.user}>정연이</Text>
+          <Text style={styles.time}>현재 작동중</Text>
         </View>
         <Image
           source={require("../assets/menu.png")}
