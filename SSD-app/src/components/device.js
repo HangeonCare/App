@@ -11,7 +11,11 @@ export default function Device() {
           resizeMode="contain"
           style={{ width: 34, height: 34 }}
         />
-        <View>
+        <View
+          style={{
+            marginLeft: -100,
+          }}
+        >
           <Text>정연이</Text>
           <Text>현재 작동중</Text>
         </View>

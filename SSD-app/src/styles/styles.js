@@ -11,7 +11,7 @@ export default styles = StyleSheet.create({
     height: 24,
   },
   postContainer: {
-    gap: 90,
+    gap: 140,
     flex: 0.3,
     flexDirection: "row",
     alignItems: "center",
