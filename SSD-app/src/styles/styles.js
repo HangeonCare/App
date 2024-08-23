@@ -25,4 +25,15 @@ export default styles = StyleSheet.create({
     fontSize: 32,
     marginRight: 260,
   },
+  header: {
+    marginVertical: 46,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 220,
+  },
+  logo: {
+    width: 70,
+    height: 28,
+  },
 });
