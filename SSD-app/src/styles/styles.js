@@ -6,4 +6,8 @@ export default styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  icon: {
+    width: 24,
+    height: 24,
+  },
 });
