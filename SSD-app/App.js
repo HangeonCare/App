@@ -2,10 +2,10 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import Main from "./assets/src/pages/main";
-import SignUp from "./assets/src/pages/signup";
-import Login from "./assets/src/pages/login";
-import Start from "./assets/src/pages/start";
+import Main from "./src/pages/main";
+import Login from "./src/pages/login";
+import Signup from "./src/pages/signup";
+import Start from "./src/pages/start";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +25,7 @@ export default function App() {
         />
         <Stack.Screen
           name="Signup"
-          component={SignUp}
+          component={Signup}
           options={{ headerShown: false }}
         />
         <Stack.Screen
