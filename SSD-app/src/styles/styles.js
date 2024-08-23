@@ -17,6 +17,7 @@ export default styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     padding: 10,
+    paddingHorizontal: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
   },
@@ -24,6 +25,7 @@ export default styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 32,
     marginRight: 260,
+    marginBottom: 20,
   },
   header: {
     marginVertical: 46,
