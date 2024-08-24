@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
 import styles from "../styles/styles";
+import PopUp from "../components/popUp";
 
 export default function Device() {
   return (
@@ -23,7 +24,8 @@ export default function Device() {
           source={require("../assets/menu.png")}
           resizeMode="contain"
           style={styles.icon}
-        />
+        ></Image>
+        <PopUp />
       </View>
     </View>
   );
