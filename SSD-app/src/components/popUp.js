@@ -10,7 +10,14 @@ export default function PopUp() {
           resizeMode="contain"
           source={require("../assets/information.png")}
         ></Image>
-        <Text>정보</Text>
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: "700",
+          }}
+        >
+          정보
+        </Text>
       </View>
       <View style={styles.option}>
         <Image
@@ -18,7 +25,15 @@ export default function PopUp() {
           style={styles.icon}
           source={require("../assets/date.png")}
         ></Image>
-        <Text>날짜 수정</Text>
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: "700",
+            color: "#180161",
+          }}
+        >
+          날짜 수정
+        </Text>
       </View>
       <View style={styles.option}>
         <Image
@@ -26,7 +41,15 @@ export default function PopUp() {
           style={styles.icon}
           source={require("../assets/delete.png")}
         />
-        <Text>삭제</Text>
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: "700",
+            color: "#ff0000",
+          }}
+        >
+          삭제
+        </Text>
       </View>
     </View>
   );
