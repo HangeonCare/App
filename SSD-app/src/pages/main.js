@@ -4,6 +4,7 @@ import Device from "../components/device";
 import styles from "../styles/styles";
 import Header from "../components/header";
 import AddDevice from "../components/addDevice";
+import SideBar from "../components/sideBar";
 
 export default function Main() {
   return (
@@ -12,6 +13,7 @@ export default function Main() {
       <Text style={styles.title}>기기</Text>
       <Device />
       <AddDevice />
+      <SideBar />
     </View>
   );
 }
