@@ -18,9 +18,9 @@ export default function SideBar() {
           alignItems: "center",
           position: "ablolute",
           right: 92,
-          bottom: 450,
+          bottom: 490,
           gap: 40,
-          paddingTop: 30,
+          paddingTop: 60,
         }}
       >
         <Text style={{ color: "white", fontSize: 32, fontWeight: 700 }}>
