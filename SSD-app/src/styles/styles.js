@@ -77,4 +77,9 @@ export default styles = StyleSheet.create({
     borderRightWidth: 2,
     borderRightColor: "#ccc",
   },
+  sideBarText: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "400",
+  },
 });
