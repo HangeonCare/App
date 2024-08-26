@@ -1,43 +1,60 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
-import styles from "../styles/styles";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
-export default function SideBar() {
-  const handleNavigation = (url) => {
-    window.location.href = url;
+export default function SideBar({ navigation }) {
+  const handleNavigation = (screen) => {
+    navigation.navigate(screen);
   };
 
   return (
-    <View>
-      <View
-        style={{
-          flex: 1,
-          padding: 16,
-          backgroundColor: "#4F1787",
-          width: 210,
-          alignItems: "center",
-          position: "ablolute",
-          right: 92,
-          bottom: 490,
-          gap: 40,
-          paddingTop: 60,
-        }}
-      >
-        <Text style={{ color: "white", fontSize: 32, fontWeight: 700 }}>
-          정보
-        </Text>
-        <TouchableOpacity onPress={() => handleNavigation("/login")}>
-          <Text style={styles.sideBarText}>프로필</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleNavigation("/signup")}>
-          <Text style={styles.sideBarText}>로그아웃</Text>
-        </TouchableOpacity>
-        <Image
-          style={{ width: 86, height: 38, marginTop: 480 }}
-          source={require("../assets/SSDTeamlogo.png")}
-          resizeMode="contain"
-        ></Image>
-      </View>
+    <View style={styles.container}>
+      <Text style={styles.title}>정보</Text>
+      <TouchableOpacity onPress={() => handleNavigation("Profile")}>
+        <Text style={styles.sideBarText}>프로필</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleNavigation("Home")}>
+        <Text style={styles.sideBarText}>홈</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleNavigation("Settings")}>
+        <Text style={styles.sideBarText}>설정</Text>
+      </TouchableOpacity>
+      <Image
+        style={styles.logo}
+        source={require("../assets/SSDTeamlogo.png")}
+        resizeMode="contain"
+      />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: "#4F1787",
+    width: 210,
+    alignItems: "center",
+    position: "absolute",
+    right: 0,
+    bottom: 0,
+    paddingTop: 60,
+    zIndex: 1000,
+  },
+  title: {
+    color: "white",
+    fontSize: 32,
+    fontWeight: "700",
+    marginBottom: 40,
+  },
+  sideBarText: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "400",
+    marginVertical: 10,
+  },
+  logo: {
+    width: 86,
+    height: 38,
+    marginTop: 40,
+  },
+});
