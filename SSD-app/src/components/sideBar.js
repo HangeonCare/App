@@ -29,13 +29,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor: "#4F1787",
-    width: 210,
     alignItems: "center",
-    position: "absolute",
-    right: 0,
-    bottom: 0,
+    position: "fixed",
     paddingTop: 60,
     zIndex: 1000,
+    gap: 5,
   },
   title: {
     color: "white",
@@ -52,6 +50,6 @@ const styles = StyleSheet.create({
   logo: {
     width: 86,
     height: 38,
-    marginTop: 40,
+    marginTop: 440,
   },
 });
