@@ -1,14 +1,26 @@
 import React, { useState } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Modal,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from "react-native";
 import styles from "../styles/styles";
-import PopUp from "../components/popUp";
+import PopUp from "./popUp";
 
 export default function Device() {
   const [toggle, setToggle] = useState(false);
 
-  function Toggle() {
+  const handleToggle = () => {
     setToggle(!toggle);
-  }
+  };
+
+  const handleCloseModal = () => {
+    setToggle(false);
+  };
 
   return (
     <View>
@@ -22,15 +34,44 @@ export default function Device() {
           <Text style={styles.user}>정연이</Text>
           <Text style={styles.time}>현재 작동중</Text>
         </View>
-        <TouchableOpacity onPress={Toggle}>
+        <TouchableOpacity onPress={handleToggle}>
           <Image
             source={require("../assets/menu.png")}
             resizeMode="contain"
             style={styles.icon}
           />
         </TouchableOpacity>
-        <PopUp style={{ display: toggle ? "flex" : "none" }} />
+        <Modal
+          transparent={true}
+          visible={toggle}
+          animationType="none"
+          onRequestClose={handleCloseModal}
+        >
+          <TouchableWithoutFeedback onPress={handleCloseModal}>
+            <View style={modalStyles.modalBackground}>
+              <TouchableWithoutFeedback>
+                <View style={modalStyles.modalContainer}>
+                  <PopUp />
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+          </TouchableWithoutFeedback>
+        </Modal>
       </View>
     </View>
   );
 }
+
+const modalStyles = StyleSheet.create({
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContainer: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    alignItems: "center",
+  },
+});
