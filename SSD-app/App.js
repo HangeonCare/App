@@ -15,12 +15,11 @@ const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
   return (
     <Drawer.Navigator
-      headerShown={false}
       drawerContent={(props) => <SideBar {...props} />}
       screenOptions={{ headerShown: false }}
     >
-      <Drawer.Screen headerShown={false} name="main" component={Main} />
-      <Drawer.Screen headerShown={false} name="Settings" component={LogOut} />
+      <Drawer.Screen name="main" component={Main} />
+      <Drawer.Screen name="Settings" component={LogOut} />
     </Drawer.Navigator>
   );
 }
@@ -32,12 +31,12 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen
             name="Drawer"
-            headerShown={false}
+            options={{ headerShown: false }}
             component={DrawerNavigator}
           />
           <Stack.Screen
             name="Profile"
-            headerShown={false}
+            options={{ headerShown: false }}
             component={Profile}
           />
         </Stack.Navigator>
