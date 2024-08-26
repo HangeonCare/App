@@ -1,40 +1,47 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StatusBar } from "expo-status-bar";
-import Main from "./src/pages/main";
-import Login from "./src/pages/login";
-import Signup from "./src/pages/signup";
-import Start from "./src/pages/start";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-const Stack = createNativeStackNavigator();
+import SideBar from "./src/components/sideBar";
+import Main from "./src/pages/main";
+import LogOut from "./src/components/logOut";
+import Profile from "./src/pages/Profile";
+
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator
+      headerShown={false}
+      drawerContent={(props) => <SideBar {...props} />}
+      screenOptions={{ headerShown: false }}
+    >
+      <Drawer.Screen headerShown={false} name="main" component={Main} />
+      <Drawer.Screen headerShown={false} name="Settings" component={LogOut} />
+    </Drawer.Navigator>
+  );
+}
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Start">
-        <Stack.Screen
-          name="Main"
-          component={Main}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Signup"
-          component={Signup}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Start"
-          component={Start}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-      <StatusBar style="auto" />
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Drawer"
+            headerShown={false}
+            component={DrawerNavigator}
+          />
+          <Stack.Screen
+            name="Profile"
+            headerShown={false}
+            component={Profile}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
