@@ -65,10 +65,6 @@ export default styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    gap: 10,
-    position: "absolute",
-    top: 0,
-    right: 0,
     backgroundColor: "#fff",
     borderTopWidth: 2,
     borderTopColor: "#ccc",
@@ -81,5 +77,18 @@ export default styles = StyleSheet.create({
     color: "white",
     fontSize: 24,
     fontWeight: "400",
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // 반투명 배경
+  },
+  modalContainer: {
+    width: 300,
+    padding: 20,
+    backgroundColor: "white",
+    borderRadius: 10,
+    alignItems: "center",
   },
 });
