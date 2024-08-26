@@ -12,9 +12,6 @@ export default function SideBar({ navigation }) {
       <TouchableOpacity onPress={() => handleNavigation("Profile")}>
         <Text style={styles.sideBarText}>프로필</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => handleNavigation("Home")}>
-        <Text style={styles.sideBarText}>홈</Text>
-      </TouchableOpacity>
       <TouchableOpacity onPress={() => handleNavigation("Settings")}>
         <Text style={styles.sideBarText}>설정</Text>
       </TouchableOpacity>
