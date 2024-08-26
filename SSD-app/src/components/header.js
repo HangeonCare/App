@@ -1,11 +1,14 @@
 import React from "react";
 import { Image, View, TouchableOpacity } from "react-native";
+import { DrawerActions } from "@react-navigation/native";
 import styles from "../styles/styles";
 
-export default function Header() {
+export default function Header({ navigation }) {
   return (
     <View style={styles.header}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+      >
         <Image
           style={styles.icon}
           resizeMode="contain"

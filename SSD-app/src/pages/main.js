@@ -1,19 +1,17 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import Device from "../components/device";
-import styles from "../styles/styles";
-import Header from "../components/header";
 import AddDevice from "../components/addDevice";
-import SideBar from "../components/sideBar";
+import Header from "../components/header";
+import styles from "../styles/styles";
 
-export default function Main() {
+export default function Main({ navigation }) {
   return (
     <View style={styles.container}>
-      <Header />
+      <Header navigation={navigation} />
       <Text style={styles.title}>기기</Text>
       <Device />
       <AddDevice />
-      <SideBar />
     </View>
   );
 }
