@@ -99,4 +99,9 @@ export default styles = StyleSheet.create({
     borderColor: "black",
     marginBottom: 10,
   },
+  LoginText: {
+    fontSize: 28,
+    fontWeight: "600",
+    marginBottom: 20,
+  },
 });
