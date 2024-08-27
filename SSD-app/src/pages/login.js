@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import React from "react";
 import styles from "../styles/styles";
@@ -27,6 +27,10 @@ export default function Login() {
         style={styles.input}
         placeholder="비밀번호를 입력하세요..."
       ></TextInput>
+      <TouchableOpacity>
+        <Text style={styles.Button}>로그인</Text>
+      </TouchableOpacity>
+      <Text>계정 만들기</Text>
     </View>
   );
 }

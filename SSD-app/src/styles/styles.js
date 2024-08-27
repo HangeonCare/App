@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Button, StyleSheet } from "react-native";
 export default styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -103,5 +103,13 @@ export default styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "600",
     marginBottom: 20,
+  },
+  Button: {
+    padding: 10,
+    borderRadius: 10,
+    textAlign: "center",
+    width: 123,
+    borderWidth: 1,
+    borderColor: "black",
   },
 });
