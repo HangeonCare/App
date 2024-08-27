@@ -8,6 +8,7 @@ import SideBar from "./src/components/sideBar";
 import Main from "./src/pages/main";
 import LogOut from "./src/components/logOut";
 import Profile from "./src/pages/Profile";
+import Login from "./src/pages/login";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -19,7 +20,7 @@ function DrawerNavigator() {
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="main" component={Main} />
-      <Drawer.Screen name="Settings" component={LogOut} />
+      <Drawer.Screen name="login" component={Login} />
     </Drawer.Navigator>
   );
 }
