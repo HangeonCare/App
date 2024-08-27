@@ -9,6 +9,7 @@ import Main from "./src/pages/main";
 import LogOut from "./src/components/logOut";
 import Profile from "./src/pages/Profile";
 import Login from "./src/pages/login";
+import SignUp from "./src/pages/signup";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -30,6 +31,11 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen
+            name="SignUp"
+            options={{ headerShown: false }}
+            component={SignUp}
+          />
           <Stack.Screen
             name="login"
             options={{ headerShown: false }}
