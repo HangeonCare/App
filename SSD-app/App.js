@@ -20,7 +20,7 @@ function DrawerNavigator() {
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="main" component={Main} />
-      <Drawer.Screen name="login" component={Login} />
+      <Drawer.Screen name="logout" component={LogOut} />
     </Drawer.Navigator>
   );
 }
@@ -30,6 +30,11 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen
+            name="login"
+            options={{ headerShown: false }}
+            component={Login}
+          />
           <Stack.Screen
             name="Drawer"
             options={{ headerShown: false }}
