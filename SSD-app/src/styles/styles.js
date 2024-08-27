@@ -91,4 +91,12 @@ export default styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
   },
+  input: {
+    width: 250,
+    height: 40,
+    padding: 10,
+    borderBottomWidth: 1,
+    borderColor: "black",
+    marginBottom: 10,
+  },
 });
