@@ -21,7 +21,7 @@ export default function Login() {
       <Text style={styles.LoginText}>LOGIN</Text>
       <TextInput
         style={styles.input}
-        placeholder="아이디를 입력하세요..."
+        placeholder="전화번호를 입력하세요..."
       ></TextInput>
       <TextInput
         style={styles.input}
