@@ -20,6 +20,16 @@ export default function PopUp() {
         </Text>
       </View>
       <View style={styles.option}>
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: "700",
+          }}
+        >
+          기기 이름
+        </Text>
+      </View>
+      <View style={styles.option}>
         <Image
           resizeMode="contain"
           style={styles.icon}
