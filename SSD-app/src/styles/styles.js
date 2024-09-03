@@ -108,7 +108,6 @@ export default styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     textAlign: "center",
-    width: 123,
     borderWidth: 1,
     borderColor: "black",
   },
