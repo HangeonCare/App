@@ -2,6 +2,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import React from "react";
 import styles from "../styles/styles";
+import axios from "axios";
 
 export default function SignUp() {
   const [number, setNumber] = React.useState("");
@@ -14,12 +15,41 @@ export default function SignUp() {
   const [isPassword, setIsPassword] = React.useState(false);
   const [isPasswordCheck, setIsPasswordCheck] = React.useState(false);
 
-  const [isNumberError, setIsNumberError] = React.useState(false);
-  const [isNumberCheckError, setIsNumberCheckError] = React.useState(false);
-  const [isPasswordError, setIsPasswordError] = React.useState(false);
-  const [isPasswordCheckError, setIsPasswordCheckError] = React.useState(false);
+  const [NumberError, setNumberError] = React.useState("");
+  const [NumberCheckError, setNumberCheckError] = React.useState("");
+  const [PasswordError, setPasswordError] = React.useState("");
+  const [PasswordCheckError, setPasswordCheckError] = React.useState("");
   const NumberRegex = /^[0-9]{11}$/;
-  const Passwordregex = /^[a-zA-Z0-9]{8,16}$/;
+  const Passwordregex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
+  function numberCheck() {
+    if (NumberRegex.test(number)) {
+      setNumber(number);
+    } else {
+      setNumberError("전화번호를 다시 확인해주세요");
+    }
+  }
+  function passwordCheck() {
+    if (Passwordregex.test(password)) {
+      setPassword(password);
+    } else {
+      setPasswordError(
+        "비밀번호는 8자 이상 16자 이내, 특수문자가 들어가야 합니다!"
+      );
+    }
+  }
+  function send() {
+    axios
+      .post("url", {
+        phoneNumber: number,
+        password: password,
+      })
+      .then((res) => {
+        localStorage.setItem(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <View
       style={{
@@ -51,7 +81,7 @@ export default function SignUp() {
         style={styles.input}
         placeholder="사용하실 비밀번호를 재입력하세요..."
       ></TextInput>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={send}>
         <Text style={styles.Button}>Create Your Account!</Text>
       </TouchableOpacity>
     </View>
