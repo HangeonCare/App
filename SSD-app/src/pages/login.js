@@ -10,8 +10,8 @@ export default function Login() {
   const [isNumber, setIsNumber] = React.useState(false);
   const [isPassword, setIsPassword] = React.useState(false);
 
-  const [isNumberError, setIsNumberError] = React.useState(false);
-  const [isPasswordError, setIsPasswordError] = React.useState(false);
+  const [NumberError, setNumberError] = React.useState("");
+  const [PasswordError, setPasswordError] = React.useState("");
   return (
     <View
       style={{
@@ -37,6 +37,7 @@ export default function Login() {
         style={styles.input}
         placeholder="비밀번호를 입력하세요..."
       ></TextInput>
+      <Text>{passowrdError}</Text>
       <TouchableOpacity>
         <Text style={styles.Button}>로그인</Text>
       </TouchableOpacity>
