@@ -1,17 +1,19 @@
+import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import React from "react";
 import styles from "../styles/styles";
+import axios from "axios";
 
-export default function Login() {
-  const [number, setNumber] = React.useState("");
-  const [password, setPassword] = React.useState("");
+export default function Login({ navigation }) {
+  const [number, setNumber] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [isNumber, setIsNumber] = React.useState(false);
-  const [isPassword, setIsPassword] = React.useState(false);
+  const [isNumber, setIsNumber] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
 
-  const [NumberError, setNumberError] = React.useState("");
-  const [PasswordError, setPasswordError] = React.useState("");
+  const [numberError, setNumberError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   return (
     <View
       style={{
@@ -31,17 +33,23 @@ export default function Login() {
         style={styles.input}
         required
         placeholder="전화번호를 입력하세요..."
-      ></TextInput>
+        value={number}
+      />
+      <Text>{numberError}</Text>
       <TextInput
         required
         style={styles.input}
         placeholder="비밀번호를 입력하세요..."
-      ></TextInput>
-      <Text>{passowrdError}</Text>
+        secureTextEntry
+        value={password}
+      />
+      <Text>{passwordError}</Text>
       <TouchableOpacity>
         <Text style={styles.Button}>로그인</Text>
       </TouchableOpacity>
-      <Text>계정 만들기</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+        <Text style={styles.Button}>회원가입</Text>
+      </TouchableOpacity>
     </View>
   );
 }
