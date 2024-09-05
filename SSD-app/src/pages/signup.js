@@ -28,6 +28,13 @@ export default function SignUp() {
       setNumberError("전화번호를 다시 확인해주세요");
     }
   }
+  function checkPasswordcheck() {
+    if (passwordCheck === password) {
+      setPasswordCheck(passwordCheck);
+    } else {
+      setPasswordCheckError("비밀번호가 일치하지 않습니다.");
+    }
+  }
   function passwordCheck() {
     if (Passwordregex.test(password)) {
       setPassword(password);
