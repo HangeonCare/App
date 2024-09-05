@@ -66,24 +66,29 @@ export default function SignUp() {
       />
       <Text style={styles.LoginText}>Create Account</Text>
       <TextInput
+        onChange={numberCheck}
         required
         style={styles.input}
         placeholder="전화번호를 입력하세요..."
       ></TextInput>
       <Text>{NumberError}</Text>
       <TextInput
+        maxLength={6}
+        keyboardType="numeric"
         required
         style={styles.input}
         placeholder="인증번호 6자리를 입력하세요..."
       ></TextInput>
       <Text>{NumberCheckError}</Text>
       <TextInput
+        onChange={passwordCheck}
         required
         style={styles.input}
         placeholder="사용하실 비밀번호를 입력하세요..."
       ></TextInput>
       <Text>{PasswordError}</Text>
       <TextInput
+        required
         style={styles.input}
         placeholder="사용하실 비밀번호를 재입력하세요..."
       ></TextInput>
