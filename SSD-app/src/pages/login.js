@@ -4,6 +4,14 @@ import React from "react";
 import styles from "../styles/styles";
 
 export default function Login() {
+  const [number, setNumber] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const [isNumber, setIsNumber] = React.useState(false);
+  const [isPassword, setIsPassword] = React.useState(false);
+
+  const [isNumberError, setIsNumberError] = React.useState(false);
+  const [isPasswordError, setIsPasswordError] = React.useState(false);
   return (
     <View
       style={{
@@ -21,9 +29,11 @@ export default function Login() {
       <Text style={styles.LoginText}>LOGIN</Text>
       <TextInput
         style={styles.input}
+        required
         placeholder="전화번호를 입력하세요..."
       ></TextInput>
       <TextInput
+        required
         style={styles.input}
         placeholder="비밀번호를 입력하세요..."
       ></TextInput>
