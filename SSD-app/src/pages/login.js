@@ -5,6 +5,22 @@ import styles from "../styles/styles";
 import axios from "axios";
 
 export default function Login({ navigation }) {
+  function send() {
+    axios
+      .post("url", {
+        phoneNumber: number,
+        password: password,
+      })
+      .then((res) => {
+        localStorage.setItem("userData", res.data);
+        navigation.navigate("Home");
+      })
+      .catch((err) => {
+        console.log(err);
+        setNumberError("전화번호를 다시 확인해주세요");
+        setPasswordError("비밀번호를 다시 확인해주세요");
+      });
+  }
   const [number, setNumber] = useState("");
   const [password, setPassword] = useState("");
 
