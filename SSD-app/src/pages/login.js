@@ -8,12 +8,8 @@ export default function Login({ navigation }) {
   const [number, setNumber] = useState("");
   const [password, setPassword] = useState("");
 
-  const [isNumber, setIsNumber] = useState(false);
-  const [isPassword, setIsPassword] = useState(false);
-
   const [numberError, setNumberError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
   return (
     <View
       style={{
