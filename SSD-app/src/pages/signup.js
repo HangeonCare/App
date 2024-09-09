@@ -1,4 +1,4 @@
-export default function SignUp() {
+export default function SignUp({ navigation }) {
   const [number, setNumber] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [passwordCheck, setPasswordCheck] = React.useState("");
@@ -43,7 +43,8 @@ export default function SignUp() {
         password: password,
       })
       .then((res) => {
-        localStorage.setItem("userData", res.data);
+        navigation.navigate("Login");
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
