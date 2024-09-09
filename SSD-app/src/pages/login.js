@@ -13,12 +13,14 @@ export default function Login({ navigation }) {
       })
       .then((res) => {
         localStorage.setItem("userData", res.data);
-        navigation.navigate("Home");
+        navigation.navigate("Drawer");
       })
       .catch((err) => {
         console.log(err);
         setNumberError("전화번호를 다시 확인해주세요");
         setPasswordError("비밀번호를 다시 확인해주세요");
+        setNumber("");
+        setPassword("");
       });
   }
   const [number, setNumber] = useState("");
@@ -56,7 +58,7 @@ export default function Login({ navigation }) {
         value={password}
       />
       <Text>{passwordError}</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={send}>
         <Text style={styles.Button}>로그인</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
