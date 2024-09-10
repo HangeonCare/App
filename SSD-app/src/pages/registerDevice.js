@@ -2,6 +2,9 @@ import { Image, View, Text, TextInput, TouchableOpacity } from "react-native";
 import styles from "../styles/styles";
 
 export default function RegisterDevice({ navigation }) {
+  [number, setNumber] = useState("");
+  [numberError, setNumberError] = useState("");
+  function send() {}
   return (
     <View
       style={{
@@ -22,7 +25,7 @@ export default function RegisterDevice({ navigation }) {
         style={styles.input}
       ></TextInput>
       <View style={{ display: "flex", gap: 12 }}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={send}>
           <Text style={styles.Button}>연결하기</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={navigation.goBack()}>
