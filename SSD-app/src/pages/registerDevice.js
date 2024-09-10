@@ -1,10 +1,22 @@
 import { Image, View, Text, TextInput, TouchableOpacity } from "react-native";
 import styles from "../styles/styles";
+import axios from "axios";
 
 export default function RegisterDevice({ navigation }) {
   [number, setNumber] = useState("");
   [numberError, setNumberError] = useState("");
-  function send() {}
+  function send() {
+    axios
+      .post("url", { serial_number: number })
+      .then((res) => {
+        console.log(res);
+        navigation.navigate("Drawer");
+      })
+      .catch((err) => {
+        console.log(err);
+        setNumberError("시리얼 번호를 다시 확인해주세요");
+      });
+  }
   return (
     <View
       style={{
