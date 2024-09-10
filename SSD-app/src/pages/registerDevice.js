@@ -25,7 +25,7 @@ export default function RegisterDevice({ navigation }) {
         <TouchableOpacity>
           <Text style={styles.Button}>연결하기</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={navigation.goBack()}>
           <Text style={styles.Button}>돌아가기</Text>
         </TouchableOpacity>
       </View>
