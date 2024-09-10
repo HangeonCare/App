@@ -24,6 +24,7 @@ export default function RegisterDevice({ navigation }) {
         placeholder="시리얼 번호를 입력하세요..."
         style={styles.input}
       ></TextInput>
+      <Text>{numberError}</Text>
       <View style={{ display: "flex", gap: 12 }}>
         <TouchableOpacity onPress={send}>
           <Text style={styles.Button}>연결하기</Text>
