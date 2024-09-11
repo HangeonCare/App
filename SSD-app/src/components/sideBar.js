@@ -7,18 +7,21 @@ export default function SideBar({ navigation }) {
     navigation.navigate(screen);
   };
   function logout() {
-    axios
-      .post("url", {
-        userId: localStorage.getItem("userId"),
-      })
-      .then((res) => {
-        console.log(res);
-        localStorage.removeItem("userId");
-        navigation.navigate("Login");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    let confirm = confirm("로그아웃 하시겠습니까?");
+    if (confirm) {
+      axios
+        .post("url", {
+          userId: localStorage.getItem("userId"),
+        })
+        .then((res) => {
+          console.log(res);
+          localStorage.removeItem("userId");
+          navigation.navigate("Login");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
   return (
     <View style={styles.container}>
