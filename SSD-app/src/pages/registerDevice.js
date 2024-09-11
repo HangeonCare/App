@@ -6,16 +6,21 @@ export default function RegisterDevice({ navigation }) {
   [number, setNumber] = useState("");
   [numberError, setNumberError] = useState("");
   function send() {
-    axios
-      .post("url", { serial_number: number })
-      .then((res) => {
-        console.log(res);
-        navigation.navigate("Drawer");
-      })
-      .catch((err) => {
-        console.log(err);
-        setNumberError("시리얼 번호를 다시 확인해주세요");
-      });
+    if (number === "") {
+      setNumberError("시리얼 번호를 입력하세요.");
+      return;
+    } else {
+      axios
+        .post("url", { serial_number: number })
+        .then((res) => {
+          console.log(res);
+          navigation.navigate("Drawer");
+        })
+        .catch((err) => {
+          console.log(err);
+          setNumberError("시리얼 번호를 다시 확인해주세요");
+        });
+    }
   }
   return (
     <View
