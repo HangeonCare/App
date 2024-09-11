@@ -1,7 +1,23 @@
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import styles from "../styles/styles";
+import axios from "axios";
 
 export default function PopUp() {
+  function deleteData() {
+    let confirm = confirm("정말 삭제하시겠습니까?");
+    if (confirm) {
+      axios
+        .delete("url", {
+          serialNumber: "ABC123",
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
   return (
     <View style={styles.popup}>
       <View style={styles.option}>
@@ -10,9 +26,7 @@ export default function PopUp() {
             fontSize: 16,
             fontWeight: "700",
           }}
-        >
-          기기 이름
-        </Text>
+        ></Text>
       </View>
       <TouchableOpacity>
         <View style={styles.option}>
@@ -49,7 +63,7 @@ export default function PopUp() {
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={deleteData}>
         <View style={styles.option}>
           <Image
             resizeMode="contain"
