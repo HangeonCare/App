@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
@@ -5,15 +6,28 @@ export default function SideBar({ navigation }) {
   const handleNavigation = (screen) => {
     navigation.navigate(screen);
   };
-
+  function logout() {
+    axios
+      .post("url", {
+        userId: localStorage.getItem("userId"),
+      })
+      .then((res) => {
+        console.log(res);
+        localStorage.removeItem("userId");
+        navigation.navigate("Login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>정보</Text>
       <TouchableOpacity onPress={() => handleNavigation("Profile")}>
         <Text style={styles.sideBarText}>프로필</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => handleNavigation("Settings")}>
-        <Text style={styles.sideBarText}>설정</Text>
+      <TouchableOpacity onPress={logout}>
+        <Text style={styles.sideBarText}>로그아웃</Text>
       </TouchableOpacity>
       <Image
         style={styles.logo}
