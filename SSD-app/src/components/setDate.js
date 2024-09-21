@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
@@ -14,7 +15,17 @@ const DurationPicker = ({ onClose }) => {
     label: `${i + 1}시간`, // 1시간부터 시작
     value: i + 1,
   }));
-
+  function Save() {
+    axios
+      .put("url", { day: days, hour: hours })
+      .then((res) => {
+        alert("저장되었습니다.");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("저장에 실패했습니다. 올바른 기간을 선택해주세요.");
+      });
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.label}>기간 선택</Text>
@@ -49,7 +60,7 @@ const DurationPicker = ({ onClose }) => {
         <TouchableOpacity onPress={onClose}>
           <Text style={styles.closeButton}>닫기</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={Save}>
           <Text style={styles.closeButton}>저장</Text>
         </TouchableOpacity>
       </View>
