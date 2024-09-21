@@ -1,10 +1,12 @@
 import { Image, View, Text, TextInput, TouchableOpacity } from "react-native";
 import styles from "../styles/styles";
 import axios from "axios";
+import React, { useState } from "react";
 
 export default function RegisterDevice({ navigation }) {
-  [number, setNumber] = useState("");
-  [numberError, setNumberError] = useState("");
+  const [number, setNumber] = useState("");
+  const [numberError, setNumberError] = useState("");
+
   function send() {
     if (number === "") {
       setNumberError("시리얼 번호를 입력하세요.");
@@ -22,6 +24,7 @@ export default function RegisterDevice({ navigation }) {
         });
     }
   }
+
   return (
     <View
       style={{
@@ -35,18 +38,20 @@ export default function RegisterDevice({ navigation }) {
         resizeMode="contain"
         style={{ width: 100, height: 40 }}
         source={require("../assets/SSDlogo.png")}
-      ></Image>
+      />
       <Text style={styles.LoginText}>기기 연결</Text>
       <TextInput
+        value={number}
+        onChangeText={(text) => setNumber(text)}
         placeholder="시리얼 번호를 입력하세요..."
         style={styles.input}
-      ></TextInput>
-      <Text>{numberError}</Text>
+      />
+      {numberError ? <Text style={{ color: "red" }}>{numberError}</Text> : null}
       <View style={{ display: "flex", gap: 12 }}>
         <TouchableOpacity onPress={send}>
           <Text style={styles.Button}>연결하기</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.Button}>돌아가기</Text>
         </TouchableOpacity>
       </View>
