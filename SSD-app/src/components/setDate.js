@@ -38,10 +38,21 @@ const DurationPicker = ({ onClose }) => {
       <Text style={styles.result}>
         선택된 기간: {days}일 {hours}시간
       </Text>
-
-      <TouchableOpacity onPress={onClose}>
-        <Text style={styles.closeButton}>닫기</Text>
-      </TouchableOpacity>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 30,
+          marginTop: 20,
+        }}
+      >
+        <TouchableOpacity onPress={onClose}>
+          <Text style={styles.closeButton}>닫기</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.closeButton}>저장</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
