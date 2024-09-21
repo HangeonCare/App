@@ -10,39 +10,23 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+const url = "";
+
 export default function SideBar({ navigation }) {
   const handleNavigation = (screen) => {
     navigation.navigate(screen);
   };
 
-  const logout = async () => {
-    Alert.alert(
-      "로그아웃",
-      "로그아웃 하시겠습니까?",
-      [
-        {
-          text: "취소",
-          style: "cancel",
-        },
-        {
-          text: "확인",
-          onPress: async () => {
-            try {
-              const userId = await AsyncStorage.getItem("userId");
-              if (userId) {
-                const response = await axios.post("url", { userId });
-                console.log(response);
-                await AsyncStorage.removeItem("userId");
-                navigation.navigate("login");
-              }
-            } catch (err) {
-              console.log(err);
-            }
-          },
-        },
-      ],
-      { cancelable: false }
-    );
+  const logout = () => {
+    axios
+      .post(`${url}/users/logout`, { id })
+      .then((res) => {
+        alert("로그아웃 되었습니다");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("로그아웃 실패");
+      });
   };
 
   return (
