@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 
-const DurationPicker = () => {
+const DurationPicker = ({ onClose }) => {
   const [days, setDays] = useState(0);
-  const [hours, setHours] = useState(0);
+  const [hours, setHours] = useState(1);
 
   const dayOptions = Array.from({ length: 30 }, (_, i) => ({
     label: `${i}일`,
     value: i,
   }));
-  const hourOptions = Array.from({ length: 24 }, (_, i) => ({
-    label: `${i}시간`,
-    value: i,
+  const hourOptions = Array.from({ length: 23 }, (_, i) => ({
+    label: `${i + 1}시간`,
+    value: i + 1,
   }));
 
   return (
@@ -38,13 +38,18 @@ const DurationPicker = () => {
       <Text style={styles.result}>
         선택된 기간: {days}일 {hours}시간
       </Text>
+
+      <TouchableOpacity onPress={onClose}>
+        <Text style={styles.closeButton}>닫기</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 30,
+    backgroundColor: "white",
   },
   label: {
     fontSize: 18,
@@ -52,12 +57,16 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
     marginBottom: 20,
   },
   result: {
     fontSize: 16,
     marginTop: 20,
+  },
+  closeButton: {
+    marginTop: 20,
+    color: "blue",
+    textAlign: "center",
   },
 });
 
