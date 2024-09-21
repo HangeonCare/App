@@ -4,7 +4,7 @@ import styles from "../styles/styles";
 import DurationPicker from "./setDate";
 import axios from "axios";
 
-export default function PopUp(serialNumber) {
+export default function PopUp({ serialNumber, onClose }) {
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
 
   function DeleteData() {
@@ -14,6 +14,7 @@ export default function PopUp(serialNumber) {
         .delete(`url/${serialNumber}`, { serialNumber: "ABC123" })
         .then((res) => {
           alert("삭제되었습니다.");
+          onClose();
         })
         .catch((err) => {
           console.log(err);
