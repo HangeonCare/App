@@ -50,14 +50,20 @@ const styles = StyleSheet.create({
   container: {
     padding: 30,
     backgroundColor: "white",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
   },
   label: {
+    paddingTop: 300,
     fontSize: 18,
-    marginBottom: 10,
+    marginBottom: 20,
   },
   pickerContainer: {
+    display: "flex",
     flexDirection: "row",
-    marginBottom: 20,
+    marginBottom: 100,
   },
   result: {
     fontSize: 16,
