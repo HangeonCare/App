@@ -135,6 +135,9 @@ export default function SignUp({ navigation }) {
         <TouchableOpacity onPress={send}>
           <Text style={styles.Button}>Create Your Account!</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={styles.Button}>이전</Text>
+        </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>
   );
