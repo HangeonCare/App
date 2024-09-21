@@ -12,10 +12,11 @@ export default function PopUp() {
       axios
         .delete("url", { serialNumber: "ABC123" })
         .then((res) => {
-          console.log(res);
+          alert("삭제되었습니다.");
         })
         .catch((err) => {
           console.log(err);
+          alert("삭제에 실패했습니다.");
         });
     }
   }
