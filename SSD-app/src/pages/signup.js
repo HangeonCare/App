@@ -84,7 +84,7 @@ export default function SignUp({ navigation }) {
           style={{ width: 300, height: 75 }}
           source={require("../assets/loginLogo.png")}
         />
-        <Text style={styles.LoginText}>Create Account</Text>
+        <Text style={styles.LoginText}>회원가입</Text>
 
         <TextInput
           onChangeText={(text) => setNumber(text)}
@@ -133,7 +133,7 @@ export default function SignUp({ navigation }) {
         )}
 
         <TouchableOpacity onPress={send}>
-          <Text style={styles.Button}>Create Your Account!</Text>
+          <Text style={styles.Button}>회원가입</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={styles.Button}>이전</Text>
