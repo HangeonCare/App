@@ -1,15 +1,16 @@
-import { View, Image, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Image, Text, TouchableOpacity, Modal } from "react-native";
 import styles from "../styles/styles";
-import axios from "axios";
+import DurationPicker from "./setDate";
 
 export default function PopUp() {
+  const [isDatePickerVisible, setDatePickerVisible] = useState(false);
+
   function deleteData() {
-    let confirm = confirm("정말 삭제하시겠습니까?");
-    if (confirm) {
+    let confirmDelete = confirm("정말 삭제하시겠습니까?");
+    if (confirmDelete) {
       axios
-        .delete("url", {
-          serialNumber: "ABC123",
-        })
+        .delete("url", { serialNumber: "ABC123" })
         .then((res) => {
           console.log(res);
         })
@@ -18,51 +19,37 @@ export default function PopUp() {
         });
     }
   }
+
   return (
     <View style={styles.popup}>
       <View style={styles.option}>
-        <Text
-          style={{
-            fontSize: 16,
-            fontWeight: "700",
-          }}
-        ></Text>
+        <Text style={{ fontSize: 16, fontWeight: "700" }}>옵션</Text>
       </View>
+
       <TouchableOpacity>
         <View style={styles.option}>
           <Image
             style={styles.icon}
             resizeMode="contain"
             source={require("../assets/information.png")}
-          ></Image>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "700",
-            }}
-          >
-            정보
-          </Text>
+          />
+          <Text style={{ fontSize: 16, fontWeight: "700" }}>정보</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity>
+
+      <TouchableOpacity onPress={() => setDatePickerVisible(true)}>
         <View style={styles.option}>
           <Image
             resizeMode="contain"
             style={styles.icon}
             source={require("../assets/date.png")}
-          ></Image>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "700",
-              color: "#180161",
-            }}
-          >
+          />
+          <Text style={{ fontSize: 16, fontWeight: "700", color: "#180161" }}>
             날짜 수정
           </Text>
         </View>
       </TouchableOpacity>
+
       <TouchableOpacity onPress={deleteData}>
         <View style={styles.option}>
           <Image
@@ -70,17 +57,15 @@ export default function PopUp() {
             style={styles.icon}
             source={require("../assets/delete.png")}
           />
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "700",
-              color: "#ff0000",
-            }}
-          >
+          <Text style={{ fontSize: 16, fontWeight: "700", color: "#ff0000" }}>
             삭제
           </Text>
         </View>
       </TouchableOpacity>
+
+      <Modal visible={isDatePickerVisible} animationType="slide">
+        <DurationPicker onClose={() => setDatePickerVisible(false)} />
+      </Modal>
     </View>
   );
 }
