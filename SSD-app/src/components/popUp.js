@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { View, Image, Text, TouchableOpacity, Modal } from "react-native";
 import styles from "../styles/styles";
 import DurationPicker from "./setDate";
+import axios from "axios";
 
-export default function PopUp() {
+export default function PopUp(serialNumber) {
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
 
-  function deleteData() {
+  function DeleteData() {
     let confirmDelete = confirm("정말 삭제하시겠습니까?");
     if (confirmDelete) {
       axios
-        .delete("url", { serialNumber: "ABC123" })
+        .delete(`url/${serialNumber}`, { serialNumber: "ABC123" })
         .then((res) => {
           alert("삭제되었습니다.");
         })
@@ -51,7 +52,7 @@ export default function PopUp() {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={deleteData}>
+      <TouchableOpacity onPress={DeleteData}>
         <View style={styles.option}>
           <Image
             resizeMode="contain"
