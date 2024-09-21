@@ -30,14 +30,14 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="Drawer"
-            options={{ headerShown: false }}
-            component={DrawerNavigator}
-          />
-          <Stack.Screen
             name="login"
             options={{ headerShown: false }}
             component={Login}
+          />
+          <Stack.Screen
+            name="Drawer"
+            options={{ headerShown: false }}
+            component={DrawerNavigator}
           />
           <Stack.Screen
             name="registerDevice"
