@@ -4,14 +4,14 @@ import RNPickerSelect from "react-native-picker-select";
 
 const DurationPicker = ({ onClose }) => {
   const [days, setDays] = useState(0);
-  const [hours, setHours] = useState(1);
+  const [hours, setHours] = useState(0); // 기본 값 0
 
   const dayOptions = Array.from({ length: 30 }, (_, i) => ({
     label: `${i}일`,
     value: i,
   }));
   const hourOptions = Array.from({ length: 23 }, (_, i) => ({
-    label: `${i + 1}시간`,
+    label: `${i + 1}시간`, // 1시간부터 시작
     value: i + 1,
   }));
 
@@ -23,14 +23,14 @@ const DurationPicker = ({ onClose }) => {
         <RNPickerSelect
           onValueChange={(value) => setDays(value)}
           items={dayOptions}
-          placeholder={{ label: "일 선택", value: null }}
+          placeholder={{ label: "일 선택", value: 0 }}
           style={pickerSelectStyles}
         />
 
         <RNPickerSelect
           onValueChange={(value) => setHours(value)}
           items={hourOptions}
-          placeholder={{ label: "시간 선택", value: null }}
+          placeholder={{ label: "시간 선택", value: 0 }} // 시간 기본값 0 설정
           style={pickerSelectStyles}
         />
       </View>
@@ -55,27 +55,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 10,
   },
-  label: {
-    paddingTop: 300,
-    fontSize: 18,
-    marginBottom: 20,
-  },
-  pickerContainer: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: 100,
-  },
-  result: {
-    fontSize: 16,
-    marginTop: 20,
-  },
-  closeButton: {
-    marginTop: 20,
-    color: "blue",
-    textAlign: "center",
-  },
+  label: { paddingTop: 300, fontSize: 18, marginBottom: 20 },
+  pickerContainer: { display: "flex", flexDirection: "row", marginBottom: 100 },
+  result: { fontSize: 16, marginTop: 20 },
+  closeButton: { marginTop: 20, color: "blue", textAlign: "center" },
 });
-
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     fontSize: 16,
