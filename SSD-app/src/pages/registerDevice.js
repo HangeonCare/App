@@ -11,6 +11,8 @@ import styles from "../styles/styles";
 import axios from "axios";
 import React, { useState } from "react";
 
+const url = "";
+
 export default function RegisterDevice({ navigation }) {
   const [number, setNumber] = useState("");
   const [numberError, setNumberError] = useState("");
@@ -21,7 +23,7 @@ export default function RegisterDevice({ navigation }) {
       return;
     } else {
       axios
-        .post("url", { serial_number: number })
+        .post(`${url}/users/${id}/devices`, { serial_number: number })
         .then((res) => {
           console.log(res);
           navigation.navigate("Drawer");

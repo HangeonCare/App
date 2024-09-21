@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import styles from "../styles/styles";
 import PopUp from "./popUp";
+import DurationPicker from "./setDate";
 
 export default function Device({ devicedata }) {
   const [toggle, setToggle] = useState(false);
@@ -17,6 +18,7 @@ export default function Device({ devicedata }) {
   useEffect(() => {
     setDevice(devicedata);
     PopUp(device.serialNumber);
+    DurationPicker(device.serialNumber);
   }, []);
   const handleToggle = () => {
     setToggle(!toggle);

@@ -6,6 +6,8 @@ import Header from "../components/header";
 import styles from "../styles/styles";
 import axios from "axios";
 
+const url = "";
+
 export default function Main({ navigation }) {
   const [devices, setDevices] = useState([]);
 
@@ -15,7 +17,7 @@ export default function Main({ navigation }) {
 
   function getDeviceData() {
     axios
-      .get("url")
+      .get(`${url}/users/${id}/devices`)
       .then((res) => {
         setDevices(res.data);
       })

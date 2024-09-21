@@ -81,7 +81,7 @@ export default function SignUp({ navigation }) {
     }
 
     axios
-      .post("url", {
+      .post(`${url}/users/send_code`, {
         phoneNumber: number,
       })
       .then((res) => {

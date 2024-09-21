@@ -11,6 +11,8 @@ import { TextInput } from "react-native-gesture-handler";
 import styles from "../styles/styles";
 import axios from "axios";
 
+const url = "";
+
 export default function Login({ navigation }) {
   const [number, setNumber] = useState("");
   const [password, setPassword] = useState("");
@@ -43,7 +45,7 @@ export default function Login({ navigation }) {
 
     if (!numberError && !passwordError) {
       axios
-        .post("url", {
+        .post(`${url}/users/login`, {
           phoneNumber: number,
           password: password,
         })
