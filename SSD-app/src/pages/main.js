@@ -4,7 +4,6 @@ import Device from "../components/device";
 import AddDevice from "../components/addDevice";
 import Header from "../components/header";
 import styles from "../styles/styles";
-import DurationPicker from "../components/setDate";
 import axios from "axios";
 
 export default function Main({ navigation }) {
@@ -25,7 +24,6 @@ export default function Main({ navigation }) {
       <Text style={styles.title}>기기</Text>
       <Device />
       <AddDevice navigation={navigation} />
-      <DurationPicker />
     </View>
   );
 }
