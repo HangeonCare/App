@@ -11,9 +11,13 @@ import {
 import styles from "../styles/styles";
 import PopUp from "./popUp";
 
-export default function Device() {
+export default function Device({ devicedata }) {
   const [toggle, setToggle] = useState(false);
-
+  const [device, setDevice] = useState({});
+  useEffect(() => {
+    setDevice(devicedata);
+    PopUp(device.serialNumber);
+  }, []);
   const handleToggle = () => {
     setToggle(!toggle);
   };
@@ -23,7 +27,7 @@ export default function Device() {
   };
 
   return (
-    <View>
+    <View key={device.serialNumber}>
       <View style={styles.postContainer}>
         <Image
           source={require("../assets/connect.png")}
@@ -31,8 +35,8 @@ export default function Device() {
           style={{ width: 34, height: 34 }}
         />
         <View style={{ marginLeft: -140 }}>
-          <Text style={styles.user}>정연이</Text>
-          <Text style={styles.time}>현재 작동중</Text>
+          <Text style={styles.user}>{device.serialNumber}</Text>
+          <Text style={styles.time}>{device.period}</Text>
         </View>
         <TouchableOpacity onPress={handleToggle}>
           <Image
