@@ -48,9 +48,6 @@ export default function SideBar({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>정보</Text>
-      <TouchableOpacity onPress={() => handleNavigation("Profile")}>
-        <Text style={styles.sideBarText}>프로필</Text>
-      </TouchableOpacity>
       <TouchableOpacity onPress={logout}>
         <Text style={styles.sideBarText}>로그아웃</Text>
       </TouchableOpacity>
