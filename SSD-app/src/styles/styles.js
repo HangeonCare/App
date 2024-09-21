@@ -92,7 +92,7 @@ export default styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    width: 250,
+    width: 200,
     height: 40,
     padding: 10,
     borderBottomWidth: 1,
