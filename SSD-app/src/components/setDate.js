@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 
-const DurationPicker = ({ onClose }) => {
+const url = "";
+
+const DurationPicker = ({ onClose, serialNumber }) => {
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0); // 기본 값 0
 
@@ -17,7 +19,10 @@ const DurationPicker = ({ onClose }) => {
   }));
   function Save() {
     axios
-      .put("url", { day: days, hour: hours })
+      .put(`${url}/users/${id}/devices/${serialNumber}/period`, {
+        day: days,
+        hour: hours,
+      })
       .then((res) => {
         alert("저장되었습니다.");
       })
