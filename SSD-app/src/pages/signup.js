@@ -23,6 +23,8 @@ export default function SignUp({ navigation }) {
   const [passwordTouched, setPasswordTouched] = useState(false);
   const [passwordCheckTouched, setPasswordCheckTouched] = useState(false);
 
+  const [isPhoneButtonDisabled, setIsPhoneButtonDisabled] = useState(false);
+
   const NumberRegex = /^[0-9]{11}$/;
   const PasswordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 
@@ -60,12 +62,35 @@ export default function SignUp({ navigation }) {
       })
       .then((res) => {
         navigation.navigate("Login");
-        console.log(res);
         alert("회원가입이 완료되었습니다.");
       })
       .catch((err) => {
         console.log(err);
         alert("조건에 맞게 입력해주세요");
+      });
+  }
+
+  function sendPhone() {
+    if (number.trim() === "") {
+      alert("전화번호를 입력해주세요.");
+      return;
+    }
+
+    axios
+      .post("url", {
+        phoneNumber: number,
+      })
+      .then((res) => {
+        alert("인증번호가 전송되었습니다. 10분 간격으로 재전송 가능합니다.");
+        setIsPhoneButtonDisabled(true);
+
+        setTimeout(() => {
+          setIsPhoneButtonDisabled(false);
+        }, 10 * 60 * 1000);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("전송에 실패했습니다.");
       });
   }
 
@@ -97,12 +122,44 @@ export default function SignUp({ navigation }) {
         />
         {numberTouched && <Text style={{ color: "red" }}>{numberError}</Text>}
 
-        <TextInput
-          maxLength={6}
-          keyboardType="numeric"
-          style={styles.input}
-          placeholder="인증번호 6자리를 입력하세요..."
-        />
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <TextInput
+            maxLength={6}
+            keyboardType="numeric"
+            style={{
+              width: 200,
+              height: 40,
+              padding: 10,
+              borderBottomWidth: 1,
+              borderColor: "black",
+              marginBottom: 10,
+              marginRight: 8,
+            }}
+            placeholder="인증번호 6자리를 입력하세요..."
+          />
+          <TouchableOpacity
+            onPress={sendPhone}
+            disabled={isPhoneButtonDisabled || number.trim() === ""}
+          >
+            <Text
+              style={{
+                fontSize: 13,
+                borderWidth: 1,
+                borderRadius: 10,
+                padding: 8,
+                opacity: isPhoneButtonDisabled ? 0.5 : 1,
+              }}
+            >
+              {isPhoneButtonDisabled ? "재전송 중..." : "전송"}
+            </Text>
+          </TouchableOpacity>
+        </View>
 
         <TextInput
           secureTextEntry={true}
