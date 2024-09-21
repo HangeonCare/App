@@ -16,7 +16,7 @@ export default function AddDevice({ navigation }) {
       >
         아직 기기가 없나요?
       </Text>
-      <TouchableOpacity onPress={navigation.navigate("registerDevice")}>
+      <TouchableOpacity onPress={() => navigation.navigate("registerDevice")}>
         <Text
           style={{
             textAlign: "center",

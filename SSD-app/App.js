@@ -7,8 +7,6 @@ import RegisterDevice from "./src/pages/registerDevice";
 
 import SideBar from "./src/components/sideBar";
 import Main from "./src/pages/main";
-import LogOut from "./src/components/logOut";
-import Profile from "./src/pages/Profile";
 import Login from "./src/pages/login";
 import SignUp from "./src/pages/signup";
 
@@ -22,7 +20,6 @@ function DrawerNavigator() {
       screenOptions={{ headerShown: false }}
     >
       <Drawer.Screen name="main" component={Main} />
-      <Drawer.Screen name="logout" component={LogOut} />
     </Drawer.Navigator>
   );
 }
@@ -32,6 +29,11 @@ export default function App() {
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen
+            name="Drawer"
+            options={{ headerShown: false }}
+            component={DrawerNavigator}
+          />
           <Stack.Screen
             name="login"
             options={{ headerShown: false }}
@@ -46,16 +48,6 @@ export default function App() {
             name="SignUp"
             options={{ headerShown: false }}
             component={SignUp}
-          />
-          <Stack.Screen
-            name="Drawer"
-            options={{ headerShown: false }}
-            component={DrawerNavigator}
-          />
-          <Stack.Screen
-            name="Profile"
-            options={{ headerShown: false }}
-            component={Profile}
           />
         </Stack.Navigator>
       </NavigationContainer>
