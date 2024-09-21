@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   View,
   Text,
@@ -9,6 +9,8 @@ import {
   Keyboard,
 } from "react-native";
 import axios from "axios";
+
+const url = "";
 
 export default function SignUp({ navigation }) {
   const [number, setNumber] = useState("");
@@ -56,9 +58,11 @@ export default function SignUp({ navigation }) {
 
   function send() {
     axios
-      .post("url", {
+      .post(`${url}/users/signup`, {
         phoneNumber: number,
+        vertificationCode: sertificationNumber.current.value,
         password: password,
+        confirmPassword: passwordCheck,
       })
       .then((res) => {
         navigation.navigate("Login");
@@ -93,7 +97,7 @@ export default function SignUp({ navigation }) {
         alert("전송에 실패했습니다.");
       });
   }
-
+  const sertificationNumber = useRef();
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View
@@ -141,6 +145,7 @@ export default function SignUp({ navigation }) {
               marginBottom: 10,
               marginRight: 8,
             }}
+            ref={sertificationNumber}
             placeholder="인증번호 6자리를 입력하세요..."
           />
           <TouchableOpacity
