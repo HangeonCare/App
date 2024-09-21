@@ -76,7 +76,7 @@ export default function Login({ navigation }) {
           style={{ width: 300, height: 75 }}
           source={require("../assets/loginLogo.png")}
         />
-        <Text style={styles.LoginText}>LOGIN</Text>
+        <Text style={styles.LoginText}>로그인</Text>
 
         <TextInput
           style={styles.input}
