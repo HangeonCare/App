@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const url = "";
+const id = AsyncStorage.getItem("id");
 
 const DurationPicker = ({ onClose, serialNumber }) => {
   const [days, setDays] = useState(0);

@@ -5,8 +5,10 @@ import AddDevice from "../components/addDevice";
 import Header from "../components/header";
 import styles from "../styles/styles";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const url = "";
+const id = AsyncStorage.getItem("id");
 
 export default function Main({ navigation }) {
   const [devices, setDevices] = useState([]);

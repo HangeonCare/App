@@ -10,8 +10,10 @@ import {
 import styles from "../styles/styles";
 import axios from "axios";
 import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const url = "";
+const id = AsyncStorage.getItem("id");
 
 export default function RegisterDevice({ navigation }) {
   const [number, setNumber] = useState("");
