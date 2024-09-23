@@ -10,6 +10,7 @@ import {
 import { TextInput } from "react-native-gesture-handler";
 import styles from "../styles/styles";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const url = "";
 
@@ -50,7 +51,7 @@ export default function Login({ navigation }) {
           password: password,
         })
         .then((res) => {
-          localStorage.setItem("userData", JSON.stringify(res.data));
+          AsyncStorage.setItem("id", JSON.stringify(res.data.userId));
           navigation.navigate("Drawer");
         })
         .catch((err) => {
