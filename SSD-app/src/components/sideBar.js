@@ -11,6 +11,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const url = "";
+const id = AsyncStorage.getItem("id");
 
 export default function SideBar({ navigation }) {
   const handleNavigation = (screen) => {
@@ -19,7 +20,7 @@ export default function SideBar({ navigation }) {
 
   const logout = () => {
     axios
-      .post(`${url}/users/logout`, { id })
+      .post(`${url}/users/logout`, { userId: id })
       .then((res) => {
         alert("로그아웃 되었습니다");
       })
