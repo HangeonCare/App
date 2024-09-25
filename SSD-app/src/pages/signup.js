@@ -137,6 +137,7 @@ export default function SignUp({ navigation }) {
             maxLength={6}
             keyboardType="numeric"
             style={{
+              marginLeft: 45,
               width: 200,
               height: 40,
               padding: 10,
