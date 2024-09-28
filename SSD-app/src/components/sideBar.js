@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const url = "";
+const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 const id = AsyncStorage.getItem("id");
 
 export default function SideBar({ navigation }) {

@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const url = "";
+const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 const id = AsyncStorage.getItem("id");
 
 const DurationPicker = ({ onClose, serialNumber }) => {
