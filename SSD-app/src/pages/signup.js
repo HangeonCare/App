@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import axios from "axios";
 
-const url = "";
+const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
 export default function SignUp({ navigation }) {
   const [number, setNumber] = useState("");
@@ -81,7 +81,7 @@ export default function SignUp({ navigation }) {
     }
 
     axios
-      .post(`${url}/users/send_code`, {
+      .post(`${url}/users/send-code`, {
         phoneNumber: number,
       })
       .then((res) => {
@@ -114,18 +114,6 @@ export default function SignUp({ navigation }) {
           source={require("../assets/loginLogo.png")}
         />
         <Text style={styles.LoginText}>회원가입</Text>
-
-        <TextInput
-          onChangeText={(text) => setNumber(text)}
-          onBlur={() => {
-            setNumberTouched(true);
-            validatePhoneNumber();
-          }}
-          style={styles.input}
-          placeholder="전화번호를 입력하세요..."
-        />
-        {numberTouched && <Text style={{ color: "red" }}>{numberError}</Text>}
-
         <View
           style={{
             display: "flex",
@@ -133,28 +121,39 @@ export default function SignUp({ navigation }) {
             alignItems: "center",
           }}
         >
-          <TextInput
-            maxLength={6}
-            keyboardType="numeric"
-            style={{
-              marginLeft: 45,
-              width: 200,
-              height: 40,
-              padding: 10,
-              borderBottomWidth: 1,
-              borderColor: "black",
-              marginBottom: 10,
-              marginRight: 8,
-            }}
-            ref={sertificationNumber}
-            placeholder="인증번호 6자리를 입력하세요..."
-          />
+          <View>
+            <TextInput
+              onChangeText={(text) => setNumber(text)}
+              onBlur={() => {
+                setNumberTouched(true);
+                validatePhoneNumber();
+              }}
+              style={{
+                marginLeft: 58,
+                width: 200,
+                height: 40,
+                padding: 10,
+                borderBottomWidth: 1,
+                borderColor: "black",
+                marginBottom: 10,
+                marginRight: 8,
+              }}
+              placeholder="전화번호를 입력하세요..."
+            />
+            {numberTouched && (
+              <Text style={{ color: "red", marginLeft: 74 }}>
+                {numberError}
+              </Text>
+            )}
+          </View>
           <TouchableOpacity
             onPress={sendPhone}
             disabled={isPhoneButtonDisabled || number.trim() === ""}
           >
             <Text
               style={{
+                position: "fixed",
+                left: 7,
                 fontSize: 13,
                 borderWidth: 1,
                 borderRadius: 10,
@@ -162,10 +161,17 @@ export default function SignUp({ navigation }) {
                 opacity: isPhoneButtonDisabled ? 0.5 : 1,
               }}
             >
-              {isPhoneButtonDisabled ? "재전송 중..." : "전송"}
+              {isPhoneButtonDisabled ? "전송중" : "전송"}
             </Text>
           </TouchableOpacity>
         </View>
+        <TextInput
+          maxLength={6}
+          keyboardType="numeric"
+          style={styles.input}
+          ref={sertificationNumber}
+          placeholder="인증번호 6자리를 입력하세요..."
+        />
 
         <TextInput
           secureTextEntry={true}
