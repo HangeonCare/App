@@ -13,7 +13,7 @@ export default function SideBar({ navigation }) {
 
   const logout = () => {
     axios
-      .post(`${url}/users/logout`, { userId: id })
+      .post(`${url}/users/logout`)
       .then((res) => {
         alert("로그아웃 되었습니다");
       })
