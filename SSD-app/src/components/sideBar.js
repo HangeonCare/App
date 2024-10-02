@@ -1,13 +1,6 @@
 import axios from "axios";
 import React from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  Alert,
-} from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
