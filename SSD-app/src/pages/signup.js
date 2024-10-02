@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -61,12 +61,12 @@ export default function SignUp({ navigation }) {
     axios
       .post(`${url}/users/signup`, {
         phoneNumber: number,
-        vertificationCode: sertificationNumber,
+        verificationCode: sertificationNumber,
         password: password,
         confirmPassword: passwordCheck,
       })
       .then((res) => {
-        navigation.navigate("Login");
+        navigation.navigate("/login");
         alert("회원가입이 완료되었습니다.");
       })
       .catch((err) => {
@@ -88,7 +88,6 @@ export default function SignUp({ navigation }) {
       .then((res) => {
         alert("인증번호가 전송되었습니다. 10분 간격으로 재전송 가능합니다.");
         setIsPhoneButtonDisabled(true);
-
         setTimeout(() => {
           setIsPhoneButtonDisabled(false);
         }, 10 * 60 * 1000);
