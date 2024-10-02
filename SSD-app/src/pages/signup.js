@@ -14,6 +14,7 @@ const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
 export default function SignUp({ navigation }) {
   const [number, setNumber] = useState("");
+  const [sertificationNumber, setSertificationNumber] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
 
@@ -60,7 +61,7 @@ export default function SignUp({ navigation }) {
     axios
       .post(`${url}/users/signup`, {
         phoneNumber: number,
-        vertificationCode: sertificationNumber.current.value,
+        vertificationCode: sertificationNumber,
         password: password,
         confirmPassword: passwordCheck,
       })
@@ -97,7 +98,6 @@ export default function SignUp({ navigation }) {
         alert("전송에 실패했습니다.");
       });
   }
-  const sertificationNumber = useRef();
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View
@@ -169,7 +169,8 @@ export default function SignUp({ navigation }) {
           maxLength={6}
           keyboardType="numeric"
           style={styles.input}
-          ref={sertificationNumber}
+          value={sertificationNumber}
+          onChangeText={(text) => setSertificationNumber(text)}
           placeholder="인증번호 6자리를 입력하세요..."
         />
 
