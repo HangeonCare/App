@@ -14,6 +14,7 @@ export default function SideBar({ navigation }) {
       .post(`${url}/users/logout`)
       .then((res) => {
         alert("로그아웃 되었습니다");
+        navigation.navigate("login");
       })
       .catch((err) => {
         console.log(err);
