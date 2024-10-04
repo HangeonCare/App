@@ -66,7 +66,7 @@ export default function SignUp({ navigation }) {
         confirmPassword: passwordCheck,
       })
       .then((res) => {
-        navigation.navigate("/login");
+        navigation.navigate("login");
         alert("회원가입이 완료되었습니다.");
       })
       .catch((err) => {
