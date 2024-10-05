@@ -12,14 +12,14 @@ export default styles = StyleSheet.create({
   },
   postContainer: {
     gap: 160,
-    flex: 0.3,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     padding: 10,
-    paddingHorizontal: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
+    height: 80,
+    margin: 20,
   },
   title: {
     fontWeight: "700",
