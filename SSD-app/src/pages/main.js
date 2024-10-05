@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Alert } from "react-native";
+import {
+  View,
+  Text,
+  Alert,
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
 import Device from "../components/device";
 import AddDevice from "../components/addDevice";
 import Header from "../components/header";
@@ -11,6 +18,15 @@ const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
 export default function Main({ navigation }) {
   const [devices, setDevices] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      fetchDeviceData();
+      setRefreshing(false);
+    }, 2000);
+  }, []);
 
   useEffect(() => {
     const fetchIdAndDeviceData = async () => {
@@ -38,21 +54,51 @@ export default function Main({ navigation }) {
     }
   };
 
+  const fetchDeviceData = async () => {
+    const storedId = await AsyncStorage.getItem("id");
+    if (storedId) {
+      await getDeviceData(storedId);
+    }
+  };
+
+  const styless = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: "center",
+      justifyContent: "start",
+    },
+    scrollView: {
+      flex: 1,
+    },
+  });
+
   return (
-    <View style={styles.container}>
+    <View style={styless.container}>
       <Header navigation={navigation} />
       <Text style={styles.title}>기기</Text>
-      {devices.length > 0 ? (
-        devices.map((device) => {
-          if (device.serialNumber) {
-            return <Device key={device.serialNumber} devicedata={device} />;
-          }
-          return null;
-        })
-      ) : (
-        <Text>기기가 없습니다.</Text>
-      )}
-      <AddDevice navigation={navigation} />
+      <ScrollView
+        contentContainerStyle={{
+          alignItems: "center",
+          justifyContent: "start",
+        }}
+        style={styless.scrollView}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        {devices.length > 0 ? (
+          devices.map((device) => {
+            if (device.serialNumber) {
+              return <Device key={device.serialNumber} devicedata={device} />;
+            }
+            return null;
+          })
+        ) : (
+          <Text>기기가 없습니다.</Text>
+        )}
+        <AddDevice navigation={navigation} />
+      </ScrollView>
     </View>
   );
 }
