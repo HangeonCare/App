@@ -11,13 +11,11 @@ const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
 export default function Main({ navigation }) {
   const [devices, setDevices] = useState([]);
-  const [id, setId] = useState(null);
 
   useEffect(() => {
     const fetchIdAndDeviceData = async () => {
       try {
         const storedId = await AsyncStorage.getItem("id");
-        setId(storedId);
         if (storedId) {
           await getDeviceData(storedId);
         }
