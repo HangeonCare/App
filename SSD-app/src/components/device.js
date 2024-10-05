@@ -13,11 +13,6 @@ import PopUp from "./popUp";
 
 export default function Device({ devicedata }) {
   const [toggle, setToggle] = useState(false);
-  const [device, setDevice] = useState({});
-
-  useEffect(() => {
-    setDevice(devicedata);
-  }, [devicedata]);
 
   const handleToggle = () => {
     setToggle(!toggle);
