@@ -44,9 +44,16 @@ export default function Main({ navigation }) {
     <View style={styles.container}>
       <Header navigation={navigation} />
       <Text style={styles.title}>기기</Text>
-      {devices.map((device) => (
-        <Device key={device.serialNumber} device={device} />
-      ))}
+      {devices.length > 0 ? (
+        devices.map((device) => {
+          if (device.serialNumber) {
+            return <Device key={device.serialNumber} devicedata={device} />;
+          }
+          return null;
+        })
+      ) : (
+        <Text>기기가 없습니다.</Text>
+      )}
       <AddDevice navigation={navigation} />
     </View>
   );
