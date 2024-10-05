@@ -19,7 +19,7 @@ export default styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
     height: 80,
-    margin: 20,
+    marginBottom: 20,
   },
   title: {
     fontWeight: "700",
