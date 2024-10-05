@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Image,
@@ -13,10 +13,36 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
-const id = AsyncStorage.getItem("id");
 
 export default function PopUp({ serialNumber, onClose }) {
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
+  useEffect(() => {
+    const fetchIdAndDeviceData = async () => {
+      try {
+        const storedId = await AsyncStorage.getItem("id");
+        if (storedId) {
+          await deleteData(storedId);
+        }
+      } catch (error) {
+        console.log(error);
+        Alert.alert("ID를 불러오는 데 실패했습니다.");
+      }
+    };
+
+    fetchIdAndDeviceData();
+  }, []);
+  async function deleteData(id, serialNumber, onClose) {
+    try {
+      const res = await axios.delete(
+        `${url}/users/${id}/devices/${serialNumber}`
+      );
+      alert("삭제되었습니다.");
+      onClose();
+    } catch (err) {
+      console.log(err);
+      alert("삭제에 실패했습니다.");
+    }
+  }
 
   function DeleteData() {
     Alert.alert(
@@ -29,27 +55,13 @@ export default function PopUp({ serialNumber, onClose }) {
         },
         {
           text: "삭제",
-          onPress: () => {
-            axios
-              .delete(`${url}/users/${id}/devices/${serialNumber}`, {
-                serialNumber: serialNumber,
-              })
-              .then((res) => {
-                alert("삭제되었습니다.");
-                onClose();
-              })
-              .catch((err) => {
-                console.log(err);
-                alert("삭제에 실패했습니다.");
-              });
-          },
+          onPress: deleteData,
           style: "destructive",
         },
       ],
       { cancelable: true }
     );
   }
-
   return (
     <View style={styles.popup}>
       <View style={styles.option}>
