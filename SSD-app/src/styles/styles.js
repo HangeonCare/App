@@ -116,4 +116,15 @@ export default styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "600",
   },
+  Button2: {
+    paddingVertical: 18,
+    paddingHorizontal: 140,
+    borderRadius: 12,
+    backgroundColor: "#E1E1E1",
+  },
+  ButtonText: {
+    textAlign: "center",
+    fontSize: 16,
+    fontWeight: "600",
+  },
 });
