@@ -168,8 +168,6 @@ export default function SignUp({ navigation }) {
           >
             <Text
               style={{
-                position: "fixed",
-                left: 7,
                 fontSize: 13,
                 borderWidth: 1,
                 borderRadius: 10,
