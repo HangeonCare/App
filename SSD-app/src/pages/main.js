@@ -16,7 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
-export default function Main({ navigation }) {
+export default function Main({ navigation, number }) {
   const [devices, setDevices] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -76,7 +76,8 @@ export default function Main({ navigation }) {
   return (
     <View style={styless.container}>
       <Header navigation={navigation} />
-      <Text style={styles.title}>기기</Text>
+      <Text style={styles.title}>{number}01045952921</Text>
+      <Text>님의 기기</Text>
       <ScrollView
         contentContainerStyle={{
           alignItems: "center",
