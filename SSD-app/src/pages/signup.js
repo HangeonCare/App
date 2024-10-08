@@ -9,6 +9,7 @@ import {
   Keyboard,
 } from "react-native";
 import axios from "axios";
+import styles from "../styles/styles";
 
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
@@ -207,11 +208,24 @@ export default function SignUp({ navigation }) {
           <Text style={{ color: "red" }}>{passwordCheckError}</Text>
         )}
 
-        <TouchableOpacity onPress={send}>
-          <Text style={styles.Button}>회원가입</Text>
+        <TouchableOpacity onPress={send} style={styles.Button2}>
+          <Text style={styles.ButtonText}>회원가입</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={styles.Button}>이전</Text>
+          <Text
+            style={{
+              paddingVertical: 18,
+              paddingHorizontal: 150,
+              borderRadius: 12,
+              textAlign: "center",
+              borderWidth: 1,
+              borderColor: "#B7B7B7",
+              fontSize: 16,
+              fontWeight: "600",
+            }}
+          >
+            로그인
+          </Text>
         </TouchableOpacity>
       </View>
     </TouchableWithoutFeedback>
