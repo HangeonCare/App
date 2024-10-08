@@ -20,6 +20,18 @@ export default function Main({ navigation, number }) {
   const [devices, setDevices] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
+  const logout = () => {
+    axios
+      .post(`${url}/users/logout`)
+      .then((res) => {
+        alert("로그아웃 되었습니다");
+        navigation.navigate("login");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("로그아웃 실패");
+      });
+  };
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     setTimeout(() => {
