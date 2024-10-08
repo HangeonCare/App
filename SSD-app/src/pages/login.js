@@ -11,6 +11,7 @@ import { TextInput } from "react-native-gesture-handler";
 import styles from "../styles/styles";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import SSDlogo from "../assets/SSDlogo.png";
 
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
@@ -68,58 +69,69 @@ export default function Login({ navigation }) {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View
         style={{
+          padding: 20,
+          paddingTop: 100,
+          paddingBottom: 40,
           flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: "space-between",
+          alignItems: "start",
           gap: 20,
         }}
       >
-        <Image
-          resizeMode="contain"
-          style={{ width: 300, height: 75 }}
-          source={require("../assets/loginLogo.png")}
-        />
-        <Text style={styles.LoginText}>로그인</Text>
+        <View>
+          <View style={{ marginBottom: 30 }}>
+            <Image
+              resizeMode="contain"
+              style={{ width: 100, height: 40, marginBottom: 15 }}
+              source={SSDlogo}
+            />
+            <Text style={{ color: "#555555" }}>
+              로그인 후 기기를 등록 할 수 있어요
+            </Text>
+          </View>
+          <Text style={styles.LoginText}>로그인</Text>
 
-        <TextInput
-          style={styles.input}
-          placeholder="전화번호를 입력하세요..."
-          value={number}
-          onChangeText={(text) => {
-            setNumber(text);
-            if (numberTouched) validatePhoneNumber();
-          }}
-          onBlur={() => {
-            setNumberTouched(true);
-            validatePhoneNumber();
-          }}
-        />
-        {numberTouched && <Text style={{ color: "red" }}>{numberError}</Text>}
+          <TextInput
+            style={styles.input}
+            placeholder="전화번호를 입력하세요..."
+            value={number}
+            onChangeText={(text) => {
+              setNumber(text);
+              if (numberTouched) validatePhoneNumber();
+            }}
+            onBlur={() => {
+              setNumberTouched(true);
+              validatePhoneNumber();
+            }}
+          />
+          {numberTouched && <Text style={{ color: "red" }}>{numberError}</Text>}
 
-        <TextInput
-          style={styles.input}
-          placeholder="비밀번호를 입력하세요..."
-          secureTextEntry
-          value={password}
-          onChangeText={(text) => {
-            setPassword(text);
-            if (passwordTouched) validatePassword();
-          }}
-          onBlur={() => {
-            setPasswordTouched(true);
-            validatePassword();
-          }}
-        />
-        {passwordTouched && (
-          <Text style={{ color: "red" }}>{passwordError}</Text>
-        )}
-
-        <TouchableOpacity onPress={send}>
-          <Text style={styles.Button}>로그인</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-          <Text style={styles.Button}>회원가입</Text>
-        </TouchableOpacity>
+          <TextInput
+            style={styles.input}
+            placeholder="비밀번호를 입력하세요..."
+            secureTextEntry
+            value={password}
+            onChangeText={(text) => {
+              setPassword(text);
+              if (passwordTouched) validatePassword();
+            }}
+            onBlur={() => {
+              setPasswordTouched(true);
+              validatePassword();
+            }}
+          />
+          {passwordTouched && (
+            <Text style={{ color: "red" }}>{passwordError}</Text>
+          )}
+        </View>
+        <View>
+          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+            <Text style={styles.Button}>회원가입</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={send}>
+            <Text style={styles.Button}>로그인</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );

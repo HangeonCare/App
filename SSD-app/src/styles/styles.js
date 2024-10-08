@@ -92,7 +92,7 @@ export default styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    width: 200,
+    width: 230,
     height: 40,
     padding: 10,
     borderBottomWidth: 1,
@@ -101,8 +101,8 @@ export default styles = StyleSheet.create({
   },
   LoginText: {
     fontSize: 28,
+    marginVertical: 40,
     fontWeight: "600",
-    marginBottom: 20,
   },
   Button: {
     padding: 10,
