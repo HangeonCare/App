@@ -90,7 +90,7 @@ export default function Main({ navigation }) {
         {devices.length > 0 ? (
           devices.map((device) => {
             if (device.serialNumber) {
-              return <Device key={device.serialNumber} devicedata={device} />;
+              return <Device devicedata={device} />;
             }
             return null;
           })
