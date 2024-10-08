@@ -92,12 +92,12 @@ export default styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    width: 230,
+    width: 320,
     height: 40,
     padding: 10,
     borderBottomWidth: 1,
     borderColor: "black",
-    marginBottom: 10,
+    marginBottom: 30,
   },
   LoginText: {
     fontSize: 28,
