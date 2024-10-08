@@ -31,6 +31,11 @@ export default function App() {
             options={{ headerShown: false }}
             component={SignUp}
           />
+          <Stack.Screen
+            name="Main"
+            options={{ headerShown: false }}
+            component={Main}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
