@@ -125,9 +125,6 @@ export default function Login({ navigation }) {
           )}
         </View>
         <View style={{ display: "flex", gap: "20" }}>
-          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-            <Text style={styles.Button}>회원가입</Text>
-          </TouchableOpacity>
           <TouchableOpacity
             style={{
               paddingVertical: 18,
@@ -142,6 +139,9 @@ export default function Login({ navigation }) {
             >
               로그인
             </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+            <Text style={styles.Button}>회원가입</Text>
           </TouchableOpacity>
         </View>
       </View>
