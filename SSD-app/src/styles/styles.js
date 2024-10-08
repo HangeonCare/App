@@ -98,6 +98,8 @@ export default styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: "black",
     marginBottom: 30,
+    fontWeight: "400",
+    fontSize: 16,
   },
   LoginText: {
     fontSize: 28,
