@@ -87,16 +87,13 @@ export default function Main({ navigation }) {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        {devices.length > 0 ? (
-          devices.map((device) => {
-            if (device.serialNumber) {
-              return <Device devicedata={device} />;
-            }
-            return null;
-          })
-        ) : (
-          <Text>기기가 없습니다.</Text>
-        )}
+        {devices.map((device) => {
+          if (device.serialNumber) {
+            return <Device devicedata={device} />;
+          }
+          return null;
+        })}
+
         <AddDevice navigation={navigation} />
       </ScrollView>
     </View>
