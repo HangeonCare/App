@@ -105,10 +105,13 @@ export default styles = StyleSheet.create({
     fontWeight: "600",
   },
   Button: {
-    padding: 10,
-    borderRadius: 10,
+    paddingVertical: 18,
+    paddingHorizontal: 140,
+    borderRadius: 12,
     textAlign: "center",
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: "#B7B7B7",
+    fontSize: 16,
+    fontWeight: "600",
   },
 });
