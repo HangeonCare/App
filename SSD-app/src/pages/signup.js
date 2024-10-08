@@ -22,12 +22,14 @@ export default function SignUp({ navigation }) {
   const [numberError, setNumberError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [passwordCheckError, setPasswordCheckError] = useState("");
+  const [certificationNumberError, setCertificationNumberError] = useState("");
 
   const [numberTouched, setNumberTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
   const [passwordCheckTouched, setPasswordCheckTouched] = useState(false);
-
   const [isPhoneButtonDisabled, setIsPhoneButtonDisabled] = useState(false);
+  const [isCertificationNumberValid, setIsCertificationNumberValid] =
+    useState(false);
 
   const NumberRegex = /^[0-9]{11}$/;
   const PasswordRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
@@ -55,6 +57,34 @@ export default function SignUp({ navigation }) {
       setPasswordCheckError("비밀번호가 일치하지 않습니다.");
     } else {
       setPasswordCheckError("");
+    }
+  }
+
+  function validateCertificationNumber() {
+    if (sertificationNumber.length !== 6) {
+      setCertificationNumberError("인증번호는 6자리여야 합니다.");
+      setIsCertificationNumberValid(false);
+    } else {
+      // 인증번호가 6자리이면 서버에 확인 요청
+      axios
+        .post(`${url}/users/verify-code`, {
+          phoneNumber: number,
+          verificationCode: sertificationNumber,
+        })
+        .then((res) => {
+          if (res.data.success) {
+            setCertificationNumberError("");
+            setIsCertificationNumberValid(true); // 인증번호가 유효한 경우
+            alert("인증번호가 확인되었습니다.");
+          } else {
+            setCertificationNumberError("인증번호가 올바르지 않습니다.");
+            setIsCertificationNumberValid(false);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("인증번호 확인 요청에 실패했습니다.");
+        });
     }
   }
 
@@ -98,6 +128,7 @@ export default function SignUp({ navigation }) {
         alert("전송에 실패했습니다.");
       });
   }
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View
@@ -106,7 +137,6 @@ export default function SignUp({ navigation }) {
           justifyContent: "center",
           alignItems: "start",
           gap: 20,
-          padding: 20,
           padding: 20,
           paddingTop: 100,
           paddingBottom: 40,
@@ -139,7 +169,7 @@ export default function SignUp({ navigation }) {
             alignItems: "center",
           }}
         >
-          <View>
+          <View style={{ display: "flex", gap: 10 }}>
             <TextInput
               onChangeText={(text) => setNumber(text)}
               onBlur={() => {
@@ -152,8 +182,7 @@ export default function SignUp({ navigation }) {
                 padding: 10,
                 borderBottomWidth: 1,
                 borderColor: "black",
-                marginBottom: 10,
-                marginRight: 8,
+                fontWeight: "400",
                 fontSize: 16,
               }}
               placeholder="전화번호를 숫자만 입력해주세요"
@@ -188,7 +217,11 @@ export default function SignUp({ navigation }) {
           value={sertificationNumber}
           onChangeText={(text) => setSertificationNumber(text)}
           placeholder="인증번호 6자리를 입력하세요..."
+          onBlur={validateCertificationNumber}
         />
+        {certificationNumberError && (
+          <Text style={{ color: "red" }}>{certificationNumberError}</Text>
+        )}
 
         <TextInput
           secureTextEntry={true}
@@ -219,8 +252,39 @@ export default function SignUp({ navigation }) {
         )}
 
         <View style={{ display: "flex", gap: "20", marginTop: 30 }}>
-          <TouchableOpacity onPress={send} style={styles.Button2}>
-            <Text style={styles.ButtonText}>회원가입</Text>
+          <TouchableOpacity
+            onPress={send}
+            style={{
+              paddingVertical: 18,
+              paddingHorizontal: 140,
+              borderRadius: 12,
+              backgroundColor:
+                numberError ||
+                passwordError ||
+                !sertificationNumber ||
+                passwordCheckError ||
+                !isCertificationNumberValid
+                  ? "#EB3678"
+                  : "#E1E1E1",
+            }}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                fontSize: 16,
+                fontWeight: "600",
+                color:
+                  numberError ||
+                  passwordError ||
+                  !sertificationNumber ||
+                  passwordCheckError ||
+                  !isCertificationNumberValid
+                    ? "white"
+                    : "black",
+              }}
+            >
+              회원가입
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Text
