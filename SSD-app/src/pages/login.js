@@ -90,41 +90,44 @@ export default function Login({ navigation }) {
             </Text>
           </View>
           <Text style={styles.LoginText}>로그인</Text>
-          <View style={{ display: "flex", gap: 10 }}>
-            <TextInput
-              style={styles.input}
-              placeholder="전화번호를 숫자만 입력해주세요"
-              value={number}
-              onChangeText={(text) => {
-                setNumber(text);
-                if (numberTouched) validatePhoneNumber();
-              }}
-              onBlur={() => {
-                setNumberTouched(true);
-                validatePhoneNumber();
-              }}
-            />
-            {numberTouched && (
-              <Text style={{ color: "red" }}>{numberError}</Text>
-            )}
-
-            <TextInput
-              style={styles.input}
-              placeholder="비밀번호를 입력하세요..."
-              secureTextEntry
-              value={password}
-              onChangeText={(text) => {
-                setPassword(text);
-                if (passwordTouched) validatePassword();
-              }}
-              onBlur={() => {
-                setPasswordTouched(true);
-                validatePassword();
-              }}
-            />
-            {passwordTouched && (
-              <Text style={{ color: "red" }}>{passwordError}</Text>
-            )}
+          <View style={{ display: "flex", gap: 20 }}>
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="전화번호를 숫자만 입력해주세요"
+                value={number}
+                onChangeText={(text) => {
+                  setNumber(text);
+                  if (numberTouched) validatePhoneNumber();
+                }}
+                onBlur={() => {
+                  setNumberTouched(true);
+                  validatePhoneNumber();
+                }}
+              />
+              {numberTouched && (
+                <Text style={{ color: "red" }}>{numberError}</Text>
+              )}
+            </View>
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="비밀번호를 입력하세요..."
+                secureTextEntry
+                value={password}
+                onChangeText={(text) => {
+                  setPassword(text);
+                  if (passwordTouched) validatePassword();
+                }}
+                onBlur={() => {
+                  setPasswordTouched(true);
+                  validatePassword();
+                }}
+              />
+              {passwordTouched && (
+                <Text style={{ color: "red" }}>{passwordError}</Text>
+              )}
+            </View>
           </View>
         </View>
         <View style={{ display: "flex", gap: "20" }}>
