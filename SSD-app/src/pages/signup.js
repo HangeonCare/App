@@ -134,7 +134,7 @@ export default function SignUp({ navigation }) {
                 validatePhoneNumber();
               }}
               style={{
-                width: 220,
+                width: 240,
                 height: 40,
                 padding: 10,
                 borderBottomWidth: 1,
@@ -143,12 +143,10 @@ export default function SignUp({ navigation }) {
                 marginRight: 8,
                 fontSize: 16,
               }}
-              placeholder="전화번호를 입력하세요..."
+              placeholder="전화번호를 숫자만 입력해주세요"
             />
             {numberTouched && (
-              <Text style={{ color: "red", marginLeft: 74 }}>
-                {numberError}
-              </Text>
+              <Text style={{ color: "red" }}>{numberError}</Text>
             )}
           </View>
           <TouchableOpacity
@@ -162,11 +160,13 @@ export default function SignUp({ navigation }) {
                 fontSize: 13,
                 borderWidth: 1,
                 borderRadius: 10,
-                padding: 8,
+                padding: 15,
                 opacity: isPhoneButtonDisabled ? 0.5 : 1,
+                fontWeight: "600",
+                borderColor: "#B7B7B7",
               }}
             >
-              {isPhoneButtonDisabled ? "전송중" : "전송"}
+              {isPhoneButtonDisabled ? "전송중" : "인증번호"}
             </Text>
           </TouchableOpacity>
         </View>
