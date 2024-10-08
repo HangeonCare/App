@@ -27,6 +27,8 @@ export default function SignUp({ navigation }) {
   const [numberTouched, setNumberTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
   const [passwordCheckTouched, setPasswordCheckTouched] = useState(false);
+  const [certificationNumberTouched, setCertificationNumberTouched] =
+    useState(false);
   const [isPhoneButtonDisabled, setIsPhoneButtonDisabled] = useState(false);
   const [isCertificationNumberValid, setIsCertificationNumberValid] =
     useState(false);
@@ -61,30 +63,13 @@ export default function SignUp({ navigation }) {
   }
 
   function validateCertificationNumber() {
+    setCertificationNumberTouched(true);
     if (sertificationNumber.length !== 6) {
       setCertificationNumberError("인증번호는 6자리여야 합니다.");
       setIsCertificationNumberValid(false);
     } else {
-      // 인증번호가 6자리이면 서버에 확인 요청
-      axios
-        .post(`${url}/users/verify-code`, {
-          phoneNumber: number,
-          verificationCode: sertificationNumber,
-        })
-        .then((res) => {
-          if (res.data.success) {
-            setCertificationNumberError("");
-            setIsCertificationNumberValid(true); // 인증번호가 유효한 경우
-            alert("인증번호가 확인되었습니다.");
-          } else {
-            setCertificationNumberError("인증번호가 올바르지 않습니다.");
-            setIsCertificationNumberValid(false);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          alert("인증번호 확인 요청에 실패했습니다.");
-        });
+      setCertificationNumberError("");
+      setIsCertificationNumberValid(true);
     }
   }
 
@@ -169,7 +154,7 @@ export default function SignUp({ navigation }) {
             alignItems: "center",
           }}
         >
-          <View style={{ display: "flex", gap: 10 }}>
+          <View>
             <TextInput
               onChangeText={(text) => setNumber(text)}
               onBlur={() => {
@@ -210,46 +195,52 @@ export default function SignUp({ navigation }) {
             </Text>
           </TouchableOpacity>
         </View>
-        <TextInput
-          maxLength={6}
-          keyboardType="numeric"
-          style={styles.input}
-          value={sertificationNumber}
-          onChangeText={(text) => setSertificationNumber(text)}
-          placeholder="인증번호 6자리를 입력하세요..."
-          onBlur={validateCertificationNumber}
-        />
-        {certificationNumberError && (
-          <Text style={{ color: "red" }}>{certificationNumberError}</Text>
-        )}
+        <View>
+          <TextInput
+            maxLength={6}
+            keyboardType="numeric"
+            style={styles.input}
+            value={sertificationNumber}
+            onChangeText={(text) => setSertificationNumber(text)}
+            onBlur={validateCertificationNumber}
+            placeholder="인증번호 6자리를 입력하세요..."
+          />
+          {certificationNumberTouched && (
+            <Text style={{ color: "red" }}>{certificationNumberError}</Text>
+          )}
+        </View>
 
-        <TextInput
-          secureTextEntry={true}
-          onChangeText={(text) => setPassword(text)}
-          onBlur={() => {
-            setPasswordTouched(true);
-            validatePassword();
-          }}
-          style={styles.input}
-          placeholder="사용하실 비밀번호를 입력하세요..."
-        />
-        {passwordTouched && (
-          <Text style={{ color: "red" }}>{passwordError}</Text>
-        )}
+        <View>
+          <TextInput
+            secureTextEntry={true}
+            onChangeText={(text) => setPassword(text)}
+            onBlur={() => {
+              setPasswordTouched(true);
+              validatePassword();
+            }}
+            style={styles.input}
+            placeholder="사용하실 비밀번호를 입력하세요..."
+          />
+          {passwordTouched && (
+            <Text style={{ color: "red" }}>{passwordError}</Text>
+          )}
+        </View>
 
-        <TextInput
-          secureTextEntry={true}
-          onChangeText={(text) => setPasswordCheck(text)}
-          onBlur={() => {
-            setPasswordCheckTouched(true);
-            checkPasswordMatch();
-          }}
-          style={styles.input}
-          placeholder="사용하실 비밀번호를 재입력하세요..."
-        />
-        {passwordCheckTouched && (
-          <Text style={{ color: "red" }}>{passwordCheckError}</Text>
-        )}
+        <View>
+          <TextInput
+            secureTextEntry={true}
+            onChangeText={(text) => setPasswordCheck(text)}
+            onBlur={() => {
+              setPasswordCheckTouched(true);
+              checkPasswordMatch();
+            }}
+            style={styles.input}
+            placeholder="사용하실 비밀번호를 재입력하세요..."
+          />
+          {passwordCheckTouched && (
+            <Text style={{ color: "red" }}>{passwordCheckError}</Text>
+          )}
+        </View>
 
         <View style={{ display: "flex", gap: "20", marginTop: 30 }}>
           <TouchableOpacity
@@ -259,13 +250,12 @@ export default function SignUp({ navigation }) {
               paddingHorizontal: 140,
               borderRadius: 12,
               backgroundColor:
-                numberError ||
-                passwordError ||
-                !sertificationNumber ||
-                passwordCheckError ||
-                !isCertificationNumberValid
-                  ? "#EB3678"
-                  : "#E1E1E1",
+                numberError === "" &&
+                passwordError === "" &&
+                certificationNumberError === "" &&
+                passwordCheckError === ""
+                  ? "#E1E1E1"
+                  : "#EB3678",
             }}
           >
             <Text
@@ -274,13 +264,12 @@ export default function SignUp({ navigation }) {
                 fontSize: 16,
                 fontWeight: "600",
                 color:
-                  numberError ||
-                  passwordError ||
-                  !sertificationNumber ||
-                  passwordCheckError ||
-                  !isCertificationNumberValid
-                    ? "white"
-                    : "black",
+                  numberError === "" &&
+                  passwordError === "" &&
+                  certificationNumberError === "" &&
+                  passwordCheckError === ""
+                    ? "black"
+                    : "white",
               }}
             >
               회원가입
