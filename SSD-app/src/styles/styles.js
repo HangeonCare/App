@@ -97,7 +97,6 @@ export default styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderColor: "black",
-    marginBottom: 30,
     fontWeight: "400",
     fontSize: 16,
   },
