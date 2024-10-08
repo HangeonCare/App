@@ -103,15 +103,21 @@ export default function SignUp({ navigation }) {
         style={{
           flex: 1,
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: "start",
           gap: 20,
+          padding: 20,
         }}
       >
-        <Image
-          resizeMode="contain"
-          style={{ width: 300, height: 75 }}
-          source={require("../assets/loginLogo.png")}
-        />
+        <View>
+          <Image
+            resizeMode="contain"
+            style={{ width: 100, height: 40, marginBottom: 15 }}
+            source={require("../assets/SSDlogo.png")}
+          />
+          <Text style={{ color: "#555555" }}>
+            회원가입 후 서비스를 누려보세요
+          </Text>
+        </View>
         <Text style={styles.LoginText}>회원가입</Text>
         <View
           style={{
@@ -128,14 +134,14 @@ export default function SignUp({ navigation }) {
                 validatePhoneNumber();
               }}
               style={{
-                marginLeft: 58,
-                width: 200,
+                width: 220,
                 height: 40,
                 padding: 10,
                 borderBottomWidth: 1,
                 borderColor: "black",
                 marginBottom: 10,
                 marginRight: 8,
+                fontSize: 16,
               }}
               placeholder="전화번호를 입력하세요..."
             />
