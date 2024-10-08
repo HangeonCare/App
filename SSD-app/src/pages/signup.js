@@ -107,6 +107,9 @@ export default function SignUp({ navigation }) {
           alignItems: "start",
           gap: 20,
           padding: 20,
+          padding: 20,
+          paddingTop: 100,
+          paddingBottom: 40,
         }}
       >
         <View>
@@ -119,7 +122,16 @@ export default function SignUp({ navigation }) {
             회원가입 후 서비스를 누려보세요
           </Text>
         </View>
-        <Text style={styles.LoginText}>회원가입</Text>
+        <Text
+          style={{
+            fontSize: 28,
+            fontWeight: "600",
+            marginTop: 50,
+            marginBottom: 25,
+          }}
+        >
+          회원가입
+        </Text>
         <View
           style={{
             display: "flex",
@@ -208,25 +220,27 @@ export default function SignUp({ navigation }) {
           <Text style={{ color: "red" }}>{passwordCheckError}</Text>
         )}
 
-        <TouchableOpacity onPress={send} style={styles.Button2}>
-          <Text style={styles.ButtonText}>회원가입</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text
-            style={{
-              paddingVertical: 18,
-              paddingHorizontal: 150,
-              borderRadius: 12,
-              textAlign: "center",
-              borderWidth: 1,
-              borderColor: "#B7B7B7",
-              fontSize: 16,
-              fontWeight: "600",
-            }}
-          >
-            로그인
-          </Text>
-        </TouchableOpacity>
+        <View style={{ display: "flex", gap: "20", marginTop: 30 }}>
+          <TouchableOpacity onPress={send} style={styles.Button2}>
+            <Text style={styles.ButtonText}>회원가입</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Text
+              style={{
+                paddingVertical: 18,
+                paddingHorizontal: 150,
+                borderRadius: 12,
+                textAlign: "center",
+                borderWidth: 1,
+                borderColor: "#B7B7B7",
+                fontSize: 16,
+                fontWeight: "600",
+              }}
+            >
+              로그인
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
