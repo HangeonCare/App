@@ -93,7 +93,7 @@ export default function Login({ navigation }) {
 
           <TextInput
             style={styles.input}
-            placeholder="전화번호를 입력하세요..."
+            placeholder="전화번호를 숫자만 입력해주세요"
             value={number}
             onChangeText={(text) => {
               setNumber(text);
