@@ -125,8 +125,25 @@ export default function Login({ navigation }) {
           )}
         </View>
         <View style={{ display: "flex", gap: "20" }}>
-          <TouchableOpacity style={styles.Button2} onPress={send}>
-            <Text style={styles.ButtonText}>로그인</Text>
+          <TouchableOpacity
+            style={{
+              paddingVertical: 18,
+              paddingHorizontal: 140,
+              borderRadius: 12,
+              backgroundColor: number && password ? "#EB3678" : "#E1E1E1",
+            }}
+            onPress={send}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                fontSize: 16,
+                fontWeight: "600",
+                color: number && password ? "white" : "black",
+              }}
+            >
+              로그인
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
             <Text style={styles.Button}>회원가입</Text>
