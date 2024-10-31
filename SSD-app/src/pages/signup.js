@@ -13,7 +13,7 @@ import styles from "../styles/styles";
 
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
-export default function SignUp({ navigation }) {
+export function SignUp({ navigation }) {
   const [number, setNumber] = useState("");
   const [sertificationNumber, setSertificationNumber] = useState("");
   const [password, setPassword] = useState("");
