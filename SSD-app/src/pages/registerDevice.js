@@ -44,10 +44,10 @@ export default function RegisterDevice({ navigation }) {
     }
     try {
       const res = await axios.post(`${url}/users/${id}/devices`, {
-        serial_number: number,
+        serialNumber: number,
       });
       console.log(res);
-      navigation.navigate("Drawer");
+      navigation.navigate("Main");
     } catch (err) {
       console.log(err);
       setNumberError("시리얼 번호를 다시 확인해주세요");
