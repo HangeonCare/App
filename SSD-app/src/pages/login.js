@@ -71,15 +71,17 @@ export function Login({ navigation }) {
                 borderBottomWidth: 1,
                 marginBottom: 20,
                 paddingHorizontal: 10,
+                marginBottom: 0,
               }}
               onChangeText={setNumber}
               value={number}
             />
-            {error && <Text>전화번호를 입력해주세요</Text>}
+            {error && (
+              <Text style={{ color: "red" }}>전화번호를 입력해주세요</Text>
+            )}
           </View>
           <View>
             <TextInput
-              keyboardType="numeric"
               secureTextEntry={true}
               placeholder="비밀번호를 입력하세요"
               style={{
@@ -89,15 +91,19 @@ export function Login({ navigation }) {
                 borderBottomWidth: 1,
                 marginBottom: 20,
                 paddingHorizontal: 10,
+                marginBottom: 0,
               }}
               onChangeText={setPassword}
               value={password}
             />
-            {error && <Text>비밀번호를 입력해주세요</Text>}
+            {error && (
+              <Text style={{ color: "red" }}>비밀번호를 입력해주세요</Text>
+            )}
           </View>
         </View>
         <View>
           <TouchableOpacity
+            disabled={password === "" && number === ""}
             onPress={send}
             style={{
               paddingVertical: 18,
