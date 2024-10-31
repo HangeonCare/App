@@ -61,17 +61,15 @@ export default styles = StyleSheet.create({
     height: 50,
   },
   popup: {
-    width: 150,
+    width: 300,
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
     backgroundColor: "#fff",
-    borderTopWidth: 2,
     borderTopColor: "#ccc",
-    borderLeftWidth: 2,
     borderLeftColor: "#ccc",
-    borderRightWidth: 2,
     borderRightColor: "#ccc",
+    textAlign: "left",
   },
   sideBarText: {
     color: "white",
@@ -82,7 +80,7 @@ export default styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // 반투명 배경
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   modalContainer: {
     width: 300,
