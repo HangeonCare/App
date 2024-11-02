@@ -14,7 +14,7 @@ import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
-const numberRegex = /^\d{6}$/;
+const numberRegex = /^[a-zA-Z0-9]{6}$/;
 
 export default function RegisterDevice({ navigation }) {
   const [number, setNumber] = useState("");
@@ -33,7 +33,6 @@ export default function RegisterDevice({ navigation }) {
         }
       } catch (error) {
         console.log(error);
-        Alert.alert("ID를 불러오는 데 실패했습니다.");
       }
     };
     getID();
