@@ -81,7 +81,9 @@ export default function Device({ devicedata }) {
   return (
     <View key={devicedata.serialNumber} style={styles.postContainer}>
       <Image
-        source={require(`../assets/${true ? "connect.png" : "dead.png"}`)}
+        source={require(`../assets/${
+          devicedata.action ? "connect.png" : "dead.png"
+        }`)}
         resizeMode="contain"
         style={{ width: 24, height: 24 }}
       />
