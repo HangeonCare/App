@@ -40,7 +40,7 @@ export default function RegisterDevice({ navigation }) {
 
   async function send() {
     if (!number.match(numberRegex)) {
-      serNumberError("시리얼 번호는 6자리 숫자입니다.");
+      setNumberError("시리얼 번호는 6자리 숫자입니다.");
       return;
     }
     if (number === "") {
@@ -48,7 +48,7 @@ export default function RegisterDevice({ navigation }) {
       return;
     }
     try {
-      const res = await axios.post(`${url}/users/${id}/devices`, {
+      const res = await axios.post(`${url}/users/${Number(id)}/devices`, {
         serialNumber: number,
       });
       navigation.navigate("Main");
