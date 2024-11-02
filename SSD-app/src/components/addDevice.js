@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 export default function AddDevice({ navigation }) {
   return (
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate("addDevice")}>
+      <TouchableOpacity onPress={() => navigation.navigate("registerDevice")}>
         <Text
           style={{
             paddingVertical: 15,
