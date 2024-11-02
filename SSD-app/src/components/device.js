@@ -16,52 +16,59 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
-function DeleteData() {
-  Alert.alert(
-    "삭제 확인",
-    "정말 삭제하시겠습니까?",
-    [
-      {
-        text: "취소",
-        style: "cancel",
-      },
-      {
-        text: "삭제",
-        onPress: deleteData,
-        style: "destructive",
-      },
-    ],
-    { cancelable: true }
-  );
-}
-async function deleteData() {
-  try {
-    const res = await axios.delete(`${url}/users/3/devices/ABC123`);
-    alert("삭제되었습니다.");
-    onClose();
-  } catch (err) {
-    console.log(err);
-    alert("삭제에 실패했습니다.");
-  }
-}
 export default function Device({ devicedata }) {
   const [toggle, setToggle] = useState(false);
   const [isDatePickerVisible, setDatePickerVisible] = useState(false);
+  const [id, setId] = useState(null);
+
   useEffect(() => {
-    const fetchIdAndDeviceData = async () => {
+    const getID = async () => {
       try {
-        const storedId = await AsyncStorage.getItem("id");
-        if (storedId) {
-          await deleteData(storedId);
+        const Id = await AsyncStorage.getItem("id");
+        if (Id !== null) {
+          setId(Id);
+        } else {
+          console.log("ID가 존재하지 않습니다.");
         }
       } catch (error) {
         console.log(error);
         Alert.alert("ID를 불러오는 데 실패했습니다.");
       }
     };
-
-    fetchIdAndDeviceData();
+    getID();
   }, []);
+
+  const deleteData = async () => {
+    try {
+      const res = await axios.delete(
+        `${url}/users/${id}/devices/${devicedata.id}`
+      );
+      Alert.alert("삭제되었습니다.");
+      handleCloseModal();
+    } catch (err) {
+      console.log(err);
+      Alert.alert("삭제에 실패했습니다.");
+    }
+  };
+
+  const confirmDelete = () => {
+    Alert.alert(
+      "삭제 확인",
+      "정말 삭제하시겠습니까?",
+      [
+        {
+          text: "취소",
+          style: "cancel",
+        },
+        {
+          text: "삭제",
+          onPress: deleteData,
+          style: "destructive",
+        },
+      ],
+      { cancelable: true }
+    );
+  };
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -124,7 +131,7 @@ export default function Device({ devicedata }) {
                     </View>
                   </TouchableOpacity>
 
-                  <TouchableOpacity onPress={DeleteData}>
+                  <TouchableOpacity onPress={confirmDelete}>
                     <View style={styles.option}>
                       <Image
                         resizeMode="contain"
