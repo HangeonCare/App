@@ -52,7 +52,6 @@ export default function RegisterDevice({ navigation }) {
       const res = await axios.post(`${url}/users/${id}/devices`, {
         serialNumber: number,
       });
-      console.log(res);
       navigation.navigate("Main");
     } catch (err) {
       console.log(err);
