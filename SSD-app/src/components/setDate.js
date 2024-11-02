@@ -1,38 +1,27 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
-const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
-const id = AsyncStorage.getItem("id");
-
-const DurationPicker = ({ onClose, serialNumber }) => {
+const DurationPicker = ({ onClose }) => {
+  const navigation = useNavigation();
   const [days, setDays] = useState(0);
-  const [hours, setHours] = useState(0); // 기본 값 0
+  const [hours, setHours] = useState(0);
 
   const dayOptions = Array.from({ length: 30 }, (_, i) => ({
     label: `${i}일`,
     value: i,
   }));
   const hourOptions = Array.from({ length: 23 }, (_, i) => ({
-    label: `${i + 1}시간`, // 1시간부터 시작
+    label: `${i + 1}시간`,
     value: i + 1,
   }));
+
   function Save() {
-    axios
-      .put(`${url}/users/${id}/devices/${serialNumber}/period`, {
-        day: days,
-        hour: hours,
-      })
-      .then((res) => {
-        alert("저장되었습니다.");
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("저장에 실패했습니다. 올바른 기간을 선택해주세요.");
-      });
+    alert("저장되었습니다.");
+    onClose();
   }
+
   return (
     <View
       style={{
@@ -61,11 +50,10 @@ const DurationPicker = ({ onClose, serialNumber }) => {
           placeholder={{ label: "일 선택", value: 0 }}
           style={pickerSelectStyles}
         />
-
         <RNPickerSelect
           onValueChange={(value) => setHours(value)}
           items={hourOptions}
-          placeholder={{ label: "시간 선택", value: 0 }} // 시간 기본값 0 설정
+          placeholder={{ label: "시간 선택", value: 0 }}
           style={pickerSelectStyles}
         />
       </View>
@@ -118,19 +106,10 @@ const DurationPicker = ({ onClose, serialNumber }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 30,
-    backgroundColor: "white",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 10,
-  },
-  label: { paddingTop: 300, fontSize: 18, marginBottom: 20 },
   pickerContainer: { display: "flex", flexDirection: "row", marginBottom: 100 },
   result: { fontSize: 16, marginTop: 20 },
-  closeButton: { marginTop: 20, color: "blue", textAlign: "center" },
 });
+
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     fontSize: 16,
