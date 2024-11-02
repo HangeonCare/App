@@ -81,9 +81,9 @@ export default function Device({ devicedata }) {
   return (
     <View key={devicedata.serialNumber} style={styles.postContainer}>
       <Image
-        source={require("../assets/connect.png")}
+        source={require(`../assets/${true ? "connect.png" : "dead.png"}`)}
         resizeMode="contain"
-        style={{ width: 34, height: 34 }}
+        style={{ width: 24, height: 24 }}
       />
       <View style={{ marginLeft: -140 }}>
         <Text style={styles.user}>{devicedata.serialNumber}</Text>
