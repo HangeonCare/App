@@ -28,6 +28,8 @@ export function Login({ navigation }) {
       .then((res) => {
         AsyncStorage.setItem("id", res.data.id);
         navigation.navigate("Main");
+        setNumber("");
+        setPassword("");
       })
       .catch((err) => {
         console.log(err);
