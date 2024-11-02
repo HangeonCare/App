@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Modal, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -34,9 +34,26 @@ const DurationPicker = ({ onClose, serialNumber }) => {
       });
   }
   return (
-    <View style={styles.container}>
-      <Text style={styles.label}>기간 선택</Text>
-
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "space-between",
+        padding: 20,
+        marginTop: 80,
+      }}
+    >
+      <View style={{ flex: 0.3 }}>
+        <Image
+          style={{ width: 100, height: 40 }}
+          source={require("../assets/SSDlogo.png")}
+        />
+        <Text style={{ color: "#555555", marginTop: 15 }}>
+          기기의 기간을 설정할 수 있어요
+        </Text>
+      </View>
+      <Text style={{ fontSize: 28, fontWeight: "bold", marginBottom: 20 }}>
+        기간 설정
+      </Text>
       <View style={styles.pickerContainer}>
         <RNPickerSelect
           onValueChange={(value) => setDays(value)}
@@ -56,19 +73,44 @@ const DurationPicker = ({ onClose, serialNumber }) => {
       <Text style={styles.result}>
         선택된 기간: {days}일 {hours}시간
       </Text>
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: 30,
-          marginTop: 20,
-        }}
-      >
-        <TouchableOpacity onPress={onClose}>
-          <Text style={styles.closeButton}>닫기</Text>
+      <View>
+        <TouchableOpacity
+          style={{
+            paddingVertical: 18,
+            paddingHorizontal: 140,
+            borderRadius: 12,
+            backgroundColor: days === 0 && hours === 0 ? "#E1E1E1" : "#EB3678",
+          }}
+          onPress={Save}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 16,
+              fontWeight: "600",
+              color: days === 0 && hours === 0 ? "black" : "white",
+            }}
+          >
+            저장
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={Save}>
-          <Text style={styles.closeButton}>저장</Text>
+        <TouchableOpacity onPress={onClose}>
+          <Text
+            style={{
+              paddingVertical: 18,
+              paddingHorizontal: 140,
+              borderRadius: 12,
+              textAlign: "center",
+              borderWidth: 1,
+              borderColor: "#B7B7B7",
+              fontSize: 16,
+              fontWeight: "600",
+              marginBottom: 70,
+              marginTop: 20,
+            }}
+          >
+            닫기
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -99,6 +141,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderRadius: 4,
     color: "black",
     paddingRight: 30,
+    width: 175,
   },
   inputAndroid: {
     fontSize: 16,
