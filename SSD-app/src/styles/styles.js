@@ -100,6 +100,7 @@ export default styles = StyleSheet.create({
     borderColor: "black",
     fontWeight: "400",
     fontSize: 16,
+    marginBottom: 0,
   },
   LoginText: {
     fontSize: 28,
