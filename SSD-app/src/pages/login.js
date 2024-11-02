@@ -26,7 +26,7 @@ export function Login({ navigation }) {
         }
       )
       .then((res) => {
-        AsyncStorage.setItem("id", res.data.id);
+        AsyncStorage.setItem("id", res.data.userId);
         navigation.navigate("Main");
         setNumber("");
         setPassword("");
