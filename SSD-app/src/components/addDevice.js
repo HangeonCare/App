@@ -4,30 +4,20 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 export default function AddDevice({ navigation }) {
   return (
     <View>
-      <Text
-        style={{
-          textAlign: "center",
-          fontWeight: "600",
-          color: "#00000080",
-          opacity: 0.5,
-          fontSize: 20,
-          marginBottom: 3,
-        }}
-      >
-        아직 기기가 없나요?
-      </Text>
-      <TouchableOpacity onPress={() => navigation.navigate("registerDevice")}>
+      <TouchableOpacity onPress={() => navigation.navigate("addDevice")}>
         <Text
           style={{
+            paddingVertical: 15,
+            paddingHorizontal: 130,
+            borderRadius: 12,
             textAlign: "center",
-            opacity: 0.5,
-            color: "#4F178780",
-            textDecorationLine: "underline",
-            fontWeight: "700",
+            borderWidth: 1,
+            borderColor: "#B7B7B7",
             fontSize: 16,
+            fontWeight: "600",
           }}
         >
-          + 기기 추가하기
+          + 기기 추가
         </Text>
       </TouchableOpacity>
     </View>
