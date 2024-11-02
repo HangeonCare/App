@@ -32,22 +32,24 @@ export default function Device({ devicedata }) {
         }
       } catch (error) {
         console.log(error);
-        Alert.alert("ID를 불러오는 데 실패했습니다.");
       }
     };
     getID();
   }, []);
-
+  useEffect(() => {}, [toggle]);
+  const imageSource = devicedata.action
+    ? require("../assets/connect.png")
+    : require("../assets/dead.png");
   const deleteData = async () => {
     try {
       const res = await axios.delete(
-        `${url}/users/${id}/devices/${devicedata.id}`
+        `${url}/users/${id}/devices/${devicedata.serialNumber}`
       );
       Alert.alert("삭제되었습니다.");
+      window.location.reload();
       handleCloseModal();
     } catch (err) {
       console.log(err);
-      Alert.alert("삭제에 실패했습니다.");
     }
   };
 
@@ -81,9 +83,7 @@ export default function Device({ devicedata }) {
   return (
     <View key={devicedata.serialNumber} style={styles.postContainer}>
       <Image
-        source={require(`../assets/${
-          devicedata.action ? "connect.png" : "dead.png"
-        }`)}
+        source={imageSource}
         resizeMode="contain"
         style={{ width: 24, height: 24 }}
       />
