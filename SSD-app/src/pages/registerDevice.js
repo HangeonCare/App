@@ -75,7 +75,9 @@ export default function RegisterDevice({ navigation }) {
             style={{ width: 100, height: 40 }}
             source={require("../assets/SSDlogo.png")}
           />
-          <Text style={{ color: "#555555" }}>기기를 추가할 수 있어요</Text>
+          <Text style={{ color: "#555555", marginTop: 15 }}>
+            기기를 추가할 수 있어요
+          </Text>
         </View>
         <Text style={{ fontWeight: "bold", fontSize: 28, marginTop: 0 }}>
           기기 연결
