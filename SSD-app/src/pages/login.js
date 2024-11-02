@@ -26,11 +26,12 @@ export function Login({ navigation }) {
         }
       )
       .then((res) => {
-        AsyncStorage.setItem("id", res.data.userId);
+        AsyncStorage.setItem("id", JSON.stringify(res.data.userId));
         navigation.navigate("Main");
         setNumber("");
         setPassword("");
       })
+
       .catch((err) => {
         console.log(err);
         setError(true);
