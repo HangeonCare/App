@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   View,
-  Text,
   Alert,
   RefreshControl,
   ScrollView,
@@ -87,7 +86,7 @@ export function Main({ navigation }) {
       >
         {devices.map((device) => {
           if (device.serialNumber) {
-            return <Device devicedata={device} />;
+            return <Device key={device.id} devicedata={device} />;
           }
           return null;
         })}
