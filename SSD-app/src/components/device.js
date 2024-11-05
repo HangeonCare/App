@@ -83,18 +83,27 @@ export default function Device({ devicedata }) {
 
   return (
     <View key={devicedata.serialNumber} style={styles.postContainer}>
-      <Image
-        source={imageSource}
-        resizeMode="contain"
-        style={{ width: 24, height: 24, marginRight: 20 }}
-      />
-      <View style={{ marginLeft: -140 }}>
-        <Text style={styles.user}>{devicedata.serialNumber}</Text>
-        <Text style={styles.time}>
-          {devicedata.action
-            ? "최근에 센서가 감지되었습니다"
-            : "설정한 기간이 지났습니다"}
-        </Text>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 10,
+        }}
+      >
+        <Image
+          source={imageSource}
+          resizeMode="contain"
+          style={{ width: 24, height: 24 }}
+        />
+        <View style={{}}>
+          <Text style={styles.user}>{devicedata.serialNumber}</Text>
+          <Text style={styles.time}>
+            {devicedata.action
+              ? "최근 센서가 감지됐습니다"
+              : "설정한 기간이 지났습니다"}
+          </Text>
+        </View>
       </View>
       <TouchableOpacity onPress={handleToggle}>
         <Image
