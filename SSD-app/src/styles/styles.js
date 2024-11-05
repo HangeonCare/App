@@ -16,6 +16,7 @@ export default styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     padding: 20,
+    paddingHorizontal: 30,
     borderWidth: 1,
     borderColor: "#B7B7B7",
     height: 80,
@@ -44,7 +45,7 @@ export default styles = StyleSheet.create({
   user: {
     fontWeight: "700",
     fontSize: 24,
-    marginBottom: 5,
+    marginBottom: 0,
   },
   time: {
     color: "#000000",

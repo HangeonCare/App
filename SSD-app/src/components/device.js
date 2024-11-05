@@ -40,6 +40,7 @@ export default function Device({ devicedata }) {
   const imageSource = devicedata.action
     ? require("../assets/connect.png")
     : require("../assets/dead.png");
+
   const deleteData = async () => {
     try {
       const res = await axios.delete(
@@ -85,11 +86,15 @@ export default function Device({ devicedata }) {
       <Image
         source={imageSource}
         resizeMode="contain"
-        style={{ width: 24, height: 24 }}
+        style={{ width: 24, height: 24, marginRight: 20 }}
       />
       <View style={{ marginLeft: -140 }}>
         <Text style={styles.user}>{devicedata.serialNumber}</Text>
-        <Text style={styles.time}>{devicedata.period}</Text>
+        <Text style={styles.time}>
+          {devicedata.action
+            ? "최근에 센서가 감지되었습니다"
+            : "설정한 기간이 지났습니다"}
+        </Text>
       </View>
       <TouchableOpacity onPress={handleToggle}>
         <Image
