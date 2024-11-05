@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
-  Alert,
 } from "react-native";
 import styles from "../styles/styles";
 import axios from "axios";
@@ -14,7 +13,7 @@ import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
-const numberRegex = /^[a-zA-Z0-9]{6}$/;
+const numberRegex = /^[a-zA-Z0-9가-힣]{1,6}$/;
 
 export default function RegisterDevice({ navigation }) {
   const [number, setNumber] = useState("");
@@ -86,8 +85,9 @@ export default function RegisterDevice({ navigation }) {
           <TextInput
             value={number}
             onChangeText={(text) => setNumber(text)}
-            placeholder="시리얼 번호를 입력하세요..."
+            placeholder="6자 이내로 시리얼 번호를 입력하세요..."
             style={styles.input}
+            maxLength={6}
           />
           {error ? <Text style={{ color: "red" }}>{numberError}</Text> : null}
         </View>
