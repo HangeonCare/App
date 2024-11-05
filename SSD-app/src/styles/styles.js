@@ -3,8 +3,9 @@ export default styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+    alignItems: "left",
     justifyContent: "start",
+    paddingHorizontal: 20,
   },
   icon: {
     width: 24,
@@ -105,8 +106,8 @@ export default styles = StyleSheet.create({
   },
   LoginText: {
     fontSize: 28,
-    marginVertical: 40,
     fontWeight: "600",
+    marginVertical: 40,
   },
   Button: {
     paddingVertical: 18,

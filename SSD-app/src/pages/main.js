@@ -5,12 +5,14 @@ import {
   RefreshControl,
   ScrollView,
   StyleSheet,
+  Text,
 } from "react-native";
 import Device from "../components/device";
 import AddDevice from "../components/addDevice";
 import Header from "../components/header";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import styles from "../styles/styles";
 
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
@@ -72,8 +74,11 @@ export function Main({ navigation }) {
   });
 
   return (
-    <View style={styless.container}>
+    <View style={styles.container}>
       <Header navigation={navigation} />
+      <Text style={{ fontSize: 28, fontWeight: "600", marginBottom: 20 }}>
+        기기 정보
+      </Text>
       <ScrollView
         contentContainerStyle={{
           alignItems: "center",
