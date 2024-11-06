@@ -20,6 +20,7 @@ export default function RegisterDevice({ navigation }) {
   const [numberError, setNumberError] = useState("");
   const [id, setId] = useState(null);
   const [error, setError] = useState(false);
+  const [focus, setFocus] = useState(false);
   useEffect(() => {
     const getID = async () => {
       try {
@@ -83,10 +84,21 @@ export default function RegisterDevice({ navigation }) {
         </Text>
         <View>
           <TextInput
+            onFocus={() => setFocus(1)}
+            onBlur={() => setFocus(null)}
             value={number}
             onChangeText={(text) => setNumber(text)}
             placeholder="6자 이내로 시리얼 번호를 입력하세요..."
-            style={styles.input}
+            style={{
+              width: 320,
+              height: 40,
+              padding: 10,
+              borderBottomWidth: 1,
+              borderColor: focus ? "#EB3678" : "gray",
+              fontWeight: "400",
+              fontSize: 16,
+              marginBottom: 0,
+            }}
             maxLength={6}
           />
           {error ? <Text style={{ color: "red" }}>{numberError}</Text> : null}
