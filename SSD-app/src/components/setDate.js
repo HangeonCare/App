@@ -126,7 +126,7 @@ const pickerSelectStyles = StyleSheet.create({
     fontSize: 16,
     paddingVertical: 12,
     paddingHorizontal: 10,
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: "gray",
     borderRadius: 4,
     color: "black",
