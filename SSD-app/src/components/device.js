@@ -27,9 +27,6 @@ export default function Device({ devicedata }) {
         const Id = await AsyncStorage.getItem("id");
         if (Id !== null) {
           setId(Id);
-          console.log(id);
-        } else {
-          console.log("ID가 존재하지 않습니다.");
         }
       } catch (error) {
         console.log(error);
