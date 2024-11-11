@@ -78,7 +78,9 @@ export default function Device({ devicedata }) {
   const handleCloseModal = () => {
     setToggle(false);
   };
-
+  const onClick = () => {
+    navigation.navigate("Graph", { serialNumber: devicedata.serialNumber });
+  };
   return (
     <View key={devicedata.serialNumber} style={styles.postContainer}>
       <View
@@ -163,9 +165,7 @@ export default function Device({ devicedata }) {
                       </Text>
                     </View>
                   </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate("Graph")}
-                  >
+                  <TouchableOpacity onPress={onClick}>
                     <View style={styles.option}>
                       <Image
                         resizeMode="contain"

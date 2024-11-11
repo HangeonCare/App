@@ -1,9 +1,45 @@
-import { Image, View, Text, TouchableOpacity, Dimensions } from "react-native";
+import axios from "axios";
+import { useEffect } from "react";
+import {
+  Image,
+  View,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  Alert,
+} from "react-native";
 import { LineChart } from "react-native-chart-kit";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const screenWidth = Dimensions.get("window").width;
+const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
-export default function Graph() {
+export default function Graph({ getDeviceData }) {
+  useEffect(() => {
+    const fetchIdAndDeviceData = async () => {
+      try {
+        const storedId = await AsyncStorage.getItem("id");
+        if (storedId) {
+          await getData(storedId);
+        }
+      } catch (error) {
+        console.log(error);
+        Alert.alert("ID를 불러오는 데 실패했습니다.");
+      }
+    };
+
+    fetchIdAndDeviceData();
+  }, []);
+  function getData(id) {
+    axios
+      .get(`${url}/users/${id}/devices/${getDeviceData}/ai`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   const data = {
     labels: ["1시", "6시", "12시", "18시", "24시"],
     datasets: [
