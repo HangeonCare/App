@@ -10,11 +10,14 @@ import {
 } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 const screenWidth = Dimensions.get("window").width;
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
 export default function Graph({ getDeviceData }) {
+  const navigation = useNavigation();
+
   useEffect(() => {
     const fetchIdAndDeviceData = async () => {
       try {
@@ -30,6 +33,7 @@ export default function Graph({ getDeviceData }) {
 
     fetchIdAndDeviceData();
   }, []);
+
   function getData(id) {
     axios
       .get(`${url}/users/${id}/devices/${getDeviceData}/ai`)
@@ -40,6 +44,7 @@ export default function Graph({ getDeviceData }) {
         console.log(err);
       });
   }
+
   const data = {
     labels: ["1시", "6시", "12시", "18시", "24시"],
     datasets: [
@@ -48,6 +53,7 @@ export default function Graph({ getDeviceData }) {
       },
     ],
   };
+
   return (
     <View style={{ flex: 1, padding: 20, marginTop: 40 }}>
       <View style={{ flex: 0.2 }}>
@@ -61,7 +67,12 @@ export default function Graph({ getDeviceData }) {
         </Text>
       </View>
       <Text
-        style={{ fontWeight: 600, fontSize: 28, marginBottom: 40, flex: 0.05 }}
+        style={{
+          fontWeight: "600",
+          fontSize: 28,
+          marginBottom: 40,
+          flex: 0.05,
+        }}
       >
         그래프
       </Text>
@@ -88,7 +99,10 @@ export default function Graph({ getDeviceData }) {
           flex: 0.6,
         }}
       />
-      <TouchableOpacity style={{ flex: 0.3 }}>
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={{ flex: 0.3 }}
+      >
         <Text
           style={{
             paddingVertical: 18,
