@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   Image,
   View,
@@ -16,6 +16,7 @@ const screenWidth = Dimensions.get("window").width;
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
 export default function Graph({ getDeviceData }) {
+  const [average, setAverage] = useState([]);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -33,12 +34,27 @@ export default function Graph({ getDeviceData }) {
 
     fetchIdAndDeviceData();
   }, []);
+  function calculate(data) {
+    const averages = new Array(5).fill(0);
+
+    for (let i = 0; i < 7; i++) {
+      for (let j = 0; j < 5; j++) {
+        averages[j] += data[i][j];
+      }
+    }
+
+    for (let j = 0; j < 5; j++) {
+      averages[j] = averages[j] / 7;
+    }
+
+    setAverage(averages);
+  }
 
   function getData(id) {
     axios
       .get(`${url}/users/${id}/devices/${getDeviceData}/ai`)
       .then((res) => {
-        console.log(res.data);
+        calculate(res.data.eventCounts);
       })
       .catch((err) => {
         console.log(err);
@@ -49,7 +65,7 @@ export default function Graph({ getDeviceData }) {
     labels: ["1시", "6시", "12시", "18시", "24시"],
     datasets: [
       {
-        data: [1, 3, 6, 7, 7, 9],
+        data: average,
       },
     ],
   };
