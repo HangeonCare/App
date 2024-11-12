@@ -35,15 +35,15 @@ export default function Graph({ getDeviceData }) {
     fetchIdAndDeviceData();
   }, []);
   function calculate(data) {
-    const averages = new Array(5).fill(0);
+    const averages = new Array(4).fill(0);
 
     for (let i = 0; i < 7; i++) {
-      for (let j = 0; j < 5; j++) {
+      for (let j = 0; j < 4; j++) {
         averages[j] += data[i][j];
       }
     }
 
-    for (let j = 0; j < 5; j++) {
+    for (let j = 0; j < 4; j++) {
       averages[j] = averages[j] / 7;
     }
 
@@ -100,7 +100,7 @@ export default function Graph({ getDeviceData }) {
           backgroundGradientFrom: "white",
           backgroundGradientTo: "white",
           decimalPlaces: 0,
-          color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          color: (opacity = 1) => `rgba(235, 54, 120, ${opacity})`,
           labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
           style: {
             borderRadius: 16,
