@@ -65,7 +65,7 @@ export default function Graph() {
   }
 
   const data = {
-    labels: ["1시", "6시", "12시", "18시", "24시"],
+    labels: ["1시~6시", "6시~12시", "12시~18시", "~24시"],
     datasets: [{ data: average }],
   };
 
@@ -93,7 +93,7 @@ export default function Graph() {
       </Text>
       <LineChart
         data={data}
-        width={screenWidth - 40}
+        width={screenWidth}
         height={300}
         chartConfig={{
           backgroundGradientFrom: "white",
