@@ -5,9 +5,9 @@ import {
   Image,
   TouchableOpacity,
   Modal,
+  Alert,
   StyleSheet,
   TouchableWithoutFeedback,
-  Alert,
 } from "react-native";
 import styles from "../styles/styles";
 import DurationPicker from "./setDate";
@@ -36,13 +36,14 @@ export default function Device({ devicedata }) {
     };
     getID();
   }, []);
+
   const imageSource = devicedata.action
     ? require("../assets/connect.png")
     : require("../assets/dead.png");
 
   const deleteData = async () => {
     try {
-      const res = await axios.delete(
+      await axios.delete(
         `${url}/users/${id}/devices/${devicedata.serialNumber}`
       );
       Alert.alert("삭제되었습니다.");
@@ -57,15 +58,8 @@ export default function Device({ devicedata }) {
       "삭제 확인",
       "정말 삭제하시겠습니까?",
       [
-        {
-          text: "취소",
-          style: "cancel",
-        },
-        {
-          text: "삭제",
-          onPress: deleteData,
-          style: "destructive",
-        },
+        { text: "취소", style: "cancel" },
+        { text: "삭제", onPress: deleteData, style: "destructive" },
       ],
       { cancelable: true }
     );
@@ -78,9 +72,11 @@ export default function Device({ devicedata }) {
   const handleCloseModal = () => {
     setToggle(false);
   };
+
   const onClick = () => {
-    navigation.navigate("Graph", { serialNumber: devicedata.serialNumber });
+    navigation.navigate("Graph", { getDeviceData: devicedata.serialNumber });
   };
+
   return (
     <View key={devicedata.serialNumber} style={styles.postContainer}>
       <View
@@ -96,7 +92,7 @@ export default function Device({ devicedata }) {
           resizeMode="contain"
           style={{ width: 24, height: 24 }}
         />
-        <View style={{}}>
+        <View>
           <Text style={styles.user}>{devicedata.serialNumber}</Text>
           <Text style={styles.time}>
             {devicedata.action
@@ -146,7 +142,6 @@ export default function Device({ devicedata }) {
                       </Text>
                     </View>
                   </TouchableOpacity>
-
                   <TouchableOpacity onPress={confirmDelete}>
                     <View style={styles.option}>
                       <Image
@@ -183,7 +178,6 @@ export default function Device({ devicedata }) {
                       </Text>
                     </View>
                   </TouchableOpacity>
-
                   <Modal visible={isDatePickerVisible} animationType="slide">
                     <DurationPicker
                       onClose={() => setDatePickerVisible(false)}

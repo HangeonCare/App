@@ -10,12 +10,14 @@ import {
 } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const screenWidth = Dimensions.get("window").width;
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
-export default function Graph({ getDeviceData }) {
+export default function Graph() {
+  const route = useRoute();
+  const { getDeviceData } = route.params;
   const [average, setAverage] = useState([]);
   const navigation = useNavigation();
 
@@ -34,6 +36,7 @@ export default function Graph({ getDeviceData }) {
 
     fetchIdAndDeviceData();
   }, []);
+
   function calculate(data) {
     const averages = new Array(4).fill(0);
 
@@ -63,11 +66,7 @@ export default function Graph({ getDeviceData }) {
 
   const data = {
     labels: ["1시", "6시", "12시", "18시", "24시"],
-    datasets: [
-      {
-        data: average,
-      },
-    ],
+    datasets: [{ data: average }],
   };
 
   return (
@@ -102,18 +101,10 @@ export default function Graph({ getDeviceData }) {
           decimalPlaces: 0,
           color: (opacity = 1) => `rgba(235, 54, 120, ${opacity})`,
           labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          style: {
-            borderRadius: 16,
-          },
-          propsForDots: {
-            r: "0",
-          },
+          style: { borderRadius: 16 },
+          propsForDots: { r: "0" },
         }}
-        style={{
-          marginVertical: 8,
-          borderRadius: 16,
-          flex: 0.6,
-        }}
+        style={{ marginVertical: 8, borderRadius: 16, flex: 0.6 }}
       />
       <TouchableOpacity
         onPress={() => navigation.goBack()}
@@ -128,12 +119,11 @@ export default function Graph({ getDeviceData }) {
             borderWidth: 1,
             borderColor: "#B7B7B7",
             fontSize: 16,
-            fontWeight: "600",
-            marginBottom: 70,
-            marginTop: 20,
+            fontWeight: "700",
+            color: "black",
           }}
         >
-          이전
+          닫기
         </Text>
       </TouchableOpacity>
     </View>
