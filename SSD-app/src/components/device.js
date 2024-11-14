@@ -65,10 +65,6 @@ export default function Device({ devicedata }) {
     );
   };
 
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
-
   const handleCloseModal = () => {
     setToggle(false);
   };
@@ -101,7 +97,11 @@ export default function Device({ devicedata }) {
           </Text>
         </View>
       </View>
-      <TouchableOpacity onPress={handleToggle}>
+      <TouchableOpacity
+        onPress={() => {
+          setToggle(true);
+        }}
+      >
         <Image
           source={require("../assets/menu.png")}
           resizeMode="contain"
