@@ -4,7 +4,7 @@
     "slug": "SSD-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "app.json",
+    "icon": "C:/Users/user/Hangion-app/SSD-app/src/assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "src/assets/splash.png",
