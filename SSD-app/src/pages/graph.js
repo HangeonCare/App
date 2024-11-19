@@ -93,7 +93,7 @@ export default function Graph() {
       </Text>
       <LineChart
         data={data}
-        width={screenWidth}
+        width={screenWidth - 20}
         height={300}
         chartConfig={{
           backgroundGradientFrom: "white",
@@ -101,10 +101,9 @@ export default function Graph() {
           decimalPlaces: 0,
           color: (opacity = 1) => `rgba(235, 54, 120, ${opacity})`,
           labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          style: { borderRadius: 16 },
           propsForDots: { r: "0" },
         }}
-        style={{ marginVertical: 8, borderRadius: 16, flex: 0.6 }}
+        style={{ marginVertical: 8, borderRadius: 10, flex: 0.6 }}
       />
       <TouchableOpacity
         onPress={() => navigation.goBack()}
