@@ -5,7 +5,6 @@ import {
   Image,
   TouchableOpacity,
   Modal,
-  Alert,
   StyleSheet,
   TouchableWithoutFeedback,
 } from "react-native";
@@ -14,6 +13,7 @@ import DurationPicker from "./setDate";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import { Alert } from "react-native";
 
 const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 
@@ -103,9 +103,15 @@ export default function Device({ devicedata }) {
         }}
       >
         <Image
-          source={require("../assets/menu.png")}
+          source={require("C:/Users/user/Hangion-app/SSD-app/src/assets/menu.png")}
           resizeMode="contain"
-          style={styles.icon}
+          style={{
+            width: 24,
+            height: 24,
+            position: "absolute",
+            right: 10,
+            top: -10,
+          }}
         />
       </TouchableOpacity>
       <Modal
