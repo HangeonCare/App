@@ -2,6 +2,7 @@
   "expo": {
     "name": "SSD-app",
     "slug": "SSD-app",
+    "newArchEnabled": true,
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "C:/Users/user/Hangion-app/SSD-app/src/assets/icon.png",
