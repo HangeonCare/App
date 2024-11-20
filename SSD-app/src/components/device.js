@@ -186,6 +186,7 @@ export default function Device({ devicedata }) {
                   </TouchableOpacity>
                   <Modal visible={isDatePickerVisible} animationType="slide">
                     <DurationPicker
+                      serialNumber={devicedata.serialNumber}
                       onClose={() => setDatePickerVisible(false)}
                     />
                   </Modal>

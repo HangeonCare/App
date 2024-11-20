@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -10,19 +10,49 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const DurationPicker = () => {
+const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
+
+const DurationPicker = ({ serialNumber }) => {
   const navigation = useNavigation();
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
+  const [userId, setId] = useState(null);
+
+  useEffect(() => {
+    const getID = async () => {
+      try {
+        const Id = await AsyncStorage.getItem("id");
+        if (Id !== null) {
+          setId(Id);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getID();
+  }, []);
 
   function Save() {
     if (days === 0 && hours === 0) {
       alert("기간을 설정해주세요.");
       return;
     }
-    alert("저장되었습니다.");
-    navigation.navigate("Main");
+    axios
+      .put(`${url}/users/${userId}/devices/${serialNumber}/period`, {
+        day: days,
+        hour: hours,
+      })
+      .then((res) => {
+        alert("저장되었습니다.");
+        navigation.navigate("Main");
+      })
+      .catch((err) => {
+        alert("날짜 설정에 실패했습니다.");
+        console.log(err);
+      });
   }
 
   return (
