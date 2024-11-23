@@ -20,7 +20,6 @@ const url = "https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app";
 export default function Device({ devicedata }) {
   const navigation = useNavigation();
   const [toggle, setToggle] = useState(false);
-  const [isDatePickerVisible, setDatePickerVisible] = useState(false);
   const [id, setId] = useState(null);
 
   useEffect(() => {
@@ -103,7 +102,7 @@ export default function Device({ devicedata }) {
         }}
       >
         <Image
-          source={require("C:/Users/user/Hangion-app/SSD-app/src/assets/menu.png")}
+          source={require("../assets/menu.png")}
           resizeMode="contain"
           style={{
             width: 24,
@@ -130,7 +129,13 @@ export default function Device({ devicedata }) {
                       {devicedata.serialNumber}
                     </Text>
                   </View>
-                  <TouchableOpacity onPress={() => setDatePickerVisible(true)}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate("DurationPicker", {
+                        serialNumber: devicedata.serialNumber,
+                      });
+                    }}
+                  >
                     <View style={styles.option}>
                       <Image
                         resizeMode="contain"
@@ -184,12 +189,6 @@ export default function Device({ devicedata }) {
                       </Text>
                     </View>
                   </TouchableOpacity>
-                  <Modal visible={isDatePickerVisible} animationType="slide">
-                    <DurationPicker
-                      serialNumber={devicedata.serialNumber}
-                      onClose={() => setDatePickerVisible(false)}
-                    />
-                  </Modal>
                 </View>
               </View>
             </TouchableWithoutFeedback>
