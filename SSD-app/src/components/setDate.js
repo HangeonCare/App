@@ -9,10 +9,9 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native"; // useRoute import 추가
+import { useNavigation, useRoute } from "@react-navigation/native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 const DurationPicker = () => {
   const navigation = useNavigation();
@@ -22,8 +21,8 @@ const DurationPicker = () => {
   const [userId, setId] = useState(null);
   const [nowTime, setNowTime] = useState(null);
   const serialNumber = route.params.serialNumber;
+
   useEffect(() => {
-    getDay();
     const getID = async () => {
       try {
         const Id = await AsyncStorage.getItem("id");
@@ -36,6 +35,26 @@ const DurationPicker = () => {
     };
     getID();
   }, []);
+
+  useEffect(() => {
+    if (userId) {
+      getDay();
+    }
+  }, [userId]);
+
+  function getDay() {
+    axios
+      .get(
+        `https://port-0-bes-m1ed5avw1d3364c3.sel4.cloudtype.app/users/${userId}/devices/${serialNumber}/period`
+      )
+      .then((res) => {
+        setNowTime(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   function Save() {
     axios
       .put(
@@ -47,6 +66,7 @@ const DurationPicker = () => {
       )
       .then(() => {
         alert("기간이 설정되었습니다.");
+        navigation.goBack();
       })
       .catch((err) => {
         console.log(err);
@@ -92,9 +112,14 @@ const DurationPicker = () => {
             <Text style={styles.label}>시간</Text>
           </View>
         </View>
-        <Text style={styles.result}>
-          선택된 기간: {days}일 {hours}시간
-        </Text>
+        <View>
+          <Text style={styles.result}>
+            선택된 기간: {days}일 {hours}시간
+          </Text>
+          <Text style={{ fontSize: 16, marginTop: 10 }}>
+            현재 설정된 기간: {nowTime?.day || 0}일 {nowTime?.hour || 0}시간
+          </Text>
+        </View>
         <View>
           <TouchableOpacity
             style={[
